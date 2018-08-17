@@ -1,0 +1,34 @@
+apply plugin: rootProject.ext.plugin.app
+apply plugin: rootProject.ext.plugin.kotlin
+apply plugin: rootProject.ext.plugin.kotlinExt
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        applicationId "com.bitliker.simple"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.expand.kotlinJDK7
+    implementation rootProject.ext.expand.supportV7
+    implementation rootProject.ext.expand.constraint
+    testImplementation rootProject.ext.expand.junit
+    androidTestImplementation rootProject.ext.expand.testRunner
+    androidTestImplementation rootProject.ext.expand.espresso
+
+    implementation rootProject.ext.expand.glide
+    annotationProcessor rootProject.ext.expand.glideCompiler
+}
