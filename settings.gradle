@@ -1,1 +1,6 @@
 include ':simple'
+
+include ':bitjson'
+
+
+project(':bitjson').projectDir = new File("controller/bitjson")

@@ -1,11 +1,11 @@
-apply from: "https://gitee.com/Bitliker-Android/BaseConfig/raw/master/version.gradle"
+apply from: "https://gitee.com/Bitliker/BaseConfig/raw/master/version.gradle"
 buildscript {
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        apply from: "https://gitee.com/Bitliker-Android/BaseConfig/raw/master/version.gradle"
+        apply from: "https://gitee.com/Bitliker/BaseConfig/raw/master/version.gradle"
         classpath rootProject.ext.classpaths.gradle
         classpath rootProject.ext.classpaths.kotlinPlugin
         classpath rootProject.ext.classpaths.dcendents

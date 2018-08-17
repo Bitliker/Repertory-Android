@@ -31,4 +31,5 @@ dependencies {
 
     implementation rootProject.ext.expand.glide
     annotationProcessor rootProject.ext.expand.glideCompiler
+    implementation project(':bitjson')
 }
