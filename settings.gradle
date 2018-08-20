@@ -2,5 +2,8 @@ include ':simple'
 
 include ':bitjson'
 
+include ':bitdialog'
+
 
 project(':bitjson').projectDir = new File("controller/bitjson")
+project(':bitdialog').projectDir = new File("ui/bitdialog")

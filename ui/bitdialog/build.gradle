@@ -5,8 +5,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 117
-        versionName "1.1.7"
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -19,12 +19,13 @@ android {
 }
 
 dependencies {
+    implementation rootProject.ext.expand.supportV7
     api rootProject.ext.expand.fastjsonAndroid
 }
 
 
 ext.repertoyAllName = 'com.bitliker.android.controller'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
-ext.versionCode = '1.1.7'                //发布版本号
+ext.versionCode = '1.0.0'                //发布版本号
 ext.versionName = 'v' + versionCode      //发布版本名字
 ext.repertoyName = 'controller'                //仓库名称
 ext.projectName = 'BitJson'              //项目名称
