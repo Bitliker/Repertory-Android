@@ -26,6 +26,7 @@ dependencies {
     implementation rootProject.ext.expand.recyclerview
     implementation rootProject.ext.expand.supportV7
     implementation rootProject.ext.expand.constraint
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation rootProject.ext.expand.junit
     androidTestImplementation rootProject.ext.expand.testRunner
     androidTestImplementation rootProject.ext.expand.espresso
@@ -35,3 +36,6 @@ dependencies {
     implementation project(':bitjson')
     implementation project(':bitdialog')
 }
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'

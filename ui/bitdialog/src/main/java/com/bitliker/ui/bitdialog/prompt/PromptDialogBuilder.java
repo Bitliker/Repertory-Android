@@ -40,8 +40,6 @@ public class PromptDialogBuilder extends BaseDialogBuilder<PromptDialogBuilder> 
     }
 
 
-
-
     public PromptDialogBuilder setPositive(String positive) {
         return setPositive(new WidgetParamer(positive));
     }
@@ -80,7 +78,7 @@ public class PromptDialogBuilder extends BaseDialogBuilder<PromptDialogBuilder> 
         saveBundle(args);
         args.putParcelable(BitDialogConstants.KEY_CONTENT_PARAMER, mContentWidgetParamer);
         args.putParcelable(BitDialogConstants.POSITIVE_PARAMER, mPositiveWidgetParamer);
-        args.putParcelable(BitDialogConstants.POSITIVE_PARAMER, mPositiveWidgetParamer);
+        args.putParcelable(BitDialogConstants.NEGATIVE_PARAMER, mNegativeWidgetParamer);
         mPromptDialogFragment.setArguments(args);
         mPromptDialogFragment.show(ct.getSupportFragmentManager(), TAG);
         return mPromptDialogFragment;

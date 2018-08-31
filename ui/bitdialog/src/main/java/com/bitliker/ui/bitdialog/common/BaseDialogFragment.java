@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.TextView;
 
 public abstract class BaseDialogFragment extends AppCompatDialogFragment {
 
@@ -72,10 +74,24 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
             dialog.setCancelable(cancelAble);
             dialog.getWindow().setWindowAnimations(animationsStyle);
             dialog.getWindow().setGravity(gravity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
         return dialog;
     }
-
+    public  void paramer2Text(TextView tv, WidgetParamer mWidgetParamer,View.OnClickListener mOnClickListener) {
+        CharSequence title = mWidgetParamer.getText();
+        tv.setText(title);
+        if (mWidgetParamer.getTextColor() > 0) {
+            tv.setTextColor(mWidgetParamer.getTextColor());
+        }
+        if (mWidgetParamer.getTextSize() > 0) {
+            if (mWidgetParamer.getOnWidgetClickListener() != null) {
+                tv.setTag(mWidgetParamer.getOnWidgetClickListener());
+                tv.setOnClickListener(mOnClickListener);
+            }
+            tv.setTextSize(mWidgetParamer.getTextSizeUnit(), mWidgetParamer.getTextSize());
+        }
+    }
 
     public abstract void initView(View view, WidgetParamer mTitleWidgetParamer);
 

@@ -29,6 +29,7 @@ public abstract class BaseDialogBuilder<T extends BaseDialogBuilder> {
     }
 
     public T setTitle(WidgetParamer mTitleWidgetParamer) {
+        this.mTitleWidgetParamer=mTitleWidgetParamer;
         return getSubclass();
     }
 

@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".modular.scheduler.SchedulerTestActivity" />
+        <activity android:name=".modular.dialog.DialogTestActivity"></activity>
     </application>
 
 </manifest>

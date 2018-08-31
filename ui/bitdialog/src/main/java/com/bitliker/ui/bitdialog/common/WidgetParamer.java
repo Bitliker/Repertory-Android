@@ -27,6 +27,7 @@ public class WidgetParamer implements Parcelable {
         textColor = -1;
         textSize = -1;
         this.text = text;
+        this.textSizeUnit = TypedValue.COMPLEX_UNIT_SP;
     }
 
     public WidgetParamer setWidgetClickListener(WidgetClickListener onWidgetClickListener) {
@@ -53,6 +54,26 @@ public class WidgetParamer implements Parcelable {
         this.textSize = textSize;
         this.textSizeUnit = textSizeUnit;
         return this;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public int getTextSizeUnit() {
+        return textSizeUnit;
+    }
+
+    public String getText() {
+        return text==null?"":text;
+    }
+
+    public WidgetClickListener getOnWidgetClickListener() {
+        return onWidgetClickListener;
     }
 
     protected WidgetParamer(Parcel in) {
