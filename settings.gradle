@@ -1,9 +1,10 @@
 include ':simple'
 
-include ':bitjson'
+include ':bitjson', ':bitplayer'
 
 include ':bitdialog'
 
 
 project(':bitjson').projectDir = new File("controller/bitjson")
+project(':bitplayer').projectDir = new File("controller/bitplayer")
 project(':bitdialog').projectDir = new File("ui/bitdialog")

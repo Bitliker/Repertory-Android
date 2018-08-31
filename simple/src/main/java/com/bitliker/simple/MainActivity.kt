@@ -1,29 +1,58 @@
 package com.bitliker.simple
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import com.bitliker.controller.bitjson.JSONUtils
-import com.bitliker.simple.config.TestConstants
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import com.bitliker.simple.common.BaseActivity
+import com.bitliker.simple.common.CommonSelectAdapter
+import com.bitliker.simple.common.model.CommonModel
+import com.bitliker.simple.common.utils.OnRecyclerClickLister
+import com.bitliker.simple.modular.recyclerview.RecyclerTestActivity
+import com.bitliker.simple.modular.scheduler.SchedulerTestActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
+    private var mCommonSelectAdapter: CommonSelectAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        initView()
     }
 
-    fun onClick(v: View) {
-        when (v.id) {
-            R.id.mButton -> {
-               var jsonObject= JSONUtils.parseObject(TestConstants.JSONOBJECT)
-
-                Log.d("gong", "JSONUtils=" + JSONUtils.parseObject(TestConstants.ERROR_JSONOBJECT))
+    private fun initView() {
+        mRecyclerView.layoutManager = LinearLayoutManager(ct)
+        mRecyclerView.addOnItemTouchListener(object : OnRecyclerClickLister(mRecyclerView) {
+            override fun onItemLongClick(vh: RecyclerView.ViewHolder?) {
 
             }
 
-        }
+            override fun onItemClick(vh: RecyclerView.ViewHolder?) {
+                var model = mCommonSelectAdapter!!.models!![vh!!.layoutPosition]
+                startActivity(Intent(ct, model.cazz))
+            }
+
+        })
+        mCommonSelectAdapter = CommonSelectAdapter(ct!!, getModel())
+
+        mRecyclerView.adapter = mCommonSelectAdapter
     }
+
+    private fun getModel(): List<CommonModel> {
+        var models = ArrayList<CommonModel>()
+        var model: CommonModel? = null
+        model = CommonModel()
+        model.name = "RecyclerView"
+        model.cazz = RecyclerTestActivity::class.java
+        models.add(model)
+        model = CommonModel()
+        model.name = "SchedulerTestActivity"
+        model.cazz = SchedulerTestActivity::class.java
+        models.add(model)
+        return models
+
+    }
+
+
 }

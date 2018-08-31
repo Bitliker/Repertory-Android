@@ -23,6 +23,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.expand.kotlinJDK7
+    implementation rootProject.ext.expand.recyclerview
     implementation rootProject.ext.expand.supportV7
     implementation rootProject.ext.expand.constraint
     testImplementation rootProject.ext.expand.junit

@@ -20,7 +20,6 @@ android {
 
 dependencies {
     implementation rootProject.ext.expand.supportV7
-    api rootProject.ext.expand.fastjsonAndroid
 }
 
 
