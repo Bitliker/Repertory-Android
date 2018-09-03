@@ -7,11 +7,13 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bitliker.ui.bitdialog.R;
@@ -86,9 +88,11 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
         return dialog;
     }
 
-    public void paramer2Text(TextView tv, WidgetParamer mWidgetParamer, View.OnClickListener mOnClickListener,boolean bindClickNotListener) {
-        CharSequence title = mWidgetParamer.getText();
-        tv.setText(title);
+    public void paramer2Text(TextView tv, WidgetParamer mWidgetParamer, View.OnClickListener mOnClickListener, boolean bindClickNotListener) {
+        String text = mWidgetParamer.getText();
+        String hint = mWidgetParamer.getHint();
+        tv.setText(text);
+        tv.setHint(hint);
         if (mWidgetParamer.getTextColorResId() != 0) {
             tv.setTextColor(getResources().getColor(mWidgetParamer.getTextColorResId()));
         } else if (mWidgetParamer.getTextColor() != -1) {
@@ -100,7 +104,7 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
         if (mWidgetParamer.getOnWidgetClickListener() != null) {
             tv.setTag(mWidgetParamer.getOnWidgetClickListener());
             tv.setOnClickListener(mOnClickListener);
-        }else if (bindClickNotListener){
+        } else if (bindClickNotListener) {
             tv.setOnClickListener(mOnClickListener);
         }
     }

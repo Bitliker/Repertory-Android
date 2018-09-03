@@ -17,6 +17,7 @@ public class WidgetParamer implements Parcelable {
     private int textSize;
     private int textSizeUnit;
     private String text;
+    private String hint;
     private WidgetListener mWidgetListener;
 
     public WidgetParamer() {
@@ -38,6 +39,17 @@ public class WidgetParamer implements Parcelable {
 
     public WidgetListener getOnWidgetClickListener() {
         return mWidgetListener;
+    }
+
+
+
+    public String getHint() {
+        return hint==null?"":hint;
+    }
+
+    public WidgetParamer setHint(String hint) {
+        this.hint = hint;
+        return this;
     }
 
 
@@ -94,6 +106,7 @@ public class WidgetParamer implements Parcelable {
         textSize = in.readInt();
         textSizeUnit = in.readInt();
         text = in.readString();
+        hint = in.readString();
         mWidgetListener = (WidgetListener) in.readSerializable();
     }
 
@@ -104,6 +117,7 @@ public class WidgetParamer implements Parcelable {
         dest.writeInt(textSize);
         dest.writeInt(textSizeUnit);
         dest.writeString(text);
+        dest.writeString(hint);
         dest.writeSerializable(mWidgetListener);
     }
 

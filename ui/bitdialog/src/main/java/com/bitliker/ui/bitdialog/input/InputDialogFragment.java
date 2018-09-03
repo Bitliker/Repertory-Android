@@ -8,9 +8,13 @@ import android.view.View;
 import com.bitliker.ui.bitdialog.R;
 import com.bitliker.ui.bitdialog.common.BaseDialogFragment;
 import com.bitliker.ui.bitdialog.common.BitDialogConstants;
+import com.bitliker.ui.bitdialog.common.listener.InputWidgetListener;
+import com.bitliker.ui.bitdialog.common.listener.PromptWidgetListener;
 import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer;
 
 public class InputDialogFragment extends BaseDialogFragment implements View.OnClickListener {
+
+    private AppCompatEditText contentEt;
 
     @Override
     public int getInflater() {
@@ -19,9 +23,8 @@ public class InputDialogFragment extends BaseDialogFragment implements View.OnCl
 
     @Override
     public void initView(View view, WidgetParamer mTitleWidgetParamer) {
-
         AppCompatTextView titleTv = view.findViewById(R.id.titleTv);
-        AppCompatEditText contentEt = view.findViewById(R.id.contentEt);
+        contentEt = view.findViewById(R.id.contentEt);
         AppCompatTextView sureTv = view.findViewById(R.id.sureTv);
         AppCompatTextView cancelTv = view.findViewById(R.id.cancelTv);
         paramer2Text(titleTv, mTitleWidgetParamer, this, false);
@@ -31,9 +34,6 @@ public class InputDialogFragment extends BaseDialogFragment implements View.OnCl
             if (mContentWidgetParamer != null) {
                 paramer2Text(contentEt, mContentWidgetParamer, null, false);
             }
-
-
-
             WidgetParamer mPositiveWidgetParamer = args.getParcelable(BitDialogConstants.POSITIVE_PARAMER);
             if (mPositiveWidgetParamer != null) {
                 paramer2Text(sureTv, mPositiveWidgetParamer, this, true);
@@ -63,24 +63,33 @@ public class InputDialogFragment extends BaseDialogFragment implements View.OnCl
 
     @Override
     public void onClick(View v) {
-//        WidgetParamer.WidgetClickListener mWidgetClickListener = null;
-//        Object object = v.getTag();
-//        int id = v.getId();
-//        if (object != null && object instanceof WidgetParamer.WidgetClickListener) {
-//            mWidgetClickListener = (WidgetParamer.WidgetClickListener) object;
-//        }
-//        if (id == R.id.titleTv || R.id.contentTv == id) {
-//            if (mWidgetClickListener != null) {
-//                mWidgetClickListener.onClick(v,null);
-//            }
-//        } else if (R.id.sureTv == id || R.id.cancelTv == id) {
-//            if (mWidgetClickListener != null) {
-//                if (mWidgetClickListener.onClick(v,null)) {
-//                    dismiss();
-//                }
-//            } else {
-//                dismiss();
-//            }
-//        }
+        InputWidgetListener mInputWidgetListener = null;
+        PromptWidgetListener mPromptWidgetListener = null;
+        Object object = v.getTag();
+        int id = v.getId();
+        if (object != null && object instanceof InputWidgetListener) {
+            mInputWidgetListener = (InputWidgetListener) object;
+        } else if (object != null && object instanceof PromptWidgetListener) {
+            mPromptWidgetListener = (PromptWidgetListener) object;
+        }
+        if (id == R.id.titleTv || R.id.contentTv == id) {
+            if (mInputWidgetListener != null) {
+                mInputWidgetListener.onClick(v, contentEt);
+            } else if (mPromptWidgetListener != null) {
+                mPromptWidgetListener.onClick(v);
+            }
+        } else if (R.id.sureTv == id || R.id.cancelTv == id) {
+            if (mInputWidgetListener != null) {
+                if (!mInputWidgetListener.onClick(v, contentEt)) {
+                    dismiss();
+                }
+            } else if (mPromptWidgetListener != null) {
+                if (!mPromptWidgetListener.onClick(v)) {
+                    dismiss();
+                }
+            } else {
+                dismiss();
+            }
+        }
     }
 }
