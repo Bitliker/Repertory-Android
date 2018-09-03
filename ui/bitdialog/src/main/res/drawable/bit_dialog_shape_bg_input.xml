@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="@dimen/bit_dialog_radius" />
+    <stroke
+        android:width="@dimen/bit_dialog_line"
+        android:color="?attr/colorAccent" />
+    <padding
+        android:bottom="@dimen/bit_dialog_paddingMin"
+        android:left="@dimen/bit_dialog_paddingMin"
+        android:right="@dimen/bit_dialog_paddingMin"
+        android:top="@dimen/bit_dialog_paddingMin" />
+
+</shape>

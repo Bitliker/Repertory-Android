@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDialogFragment;
@@ -14,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
+
+import com.bitliker.ui.bitdialog.R;
+import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer;
 
 public abstract class BaseDialogFragment extends AppCompatDialogFragment {
 
@@ -71,26 +73,35 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
             boolean canceledOnTouchOutside = args.getBoolean(BitDialogConstants.CANCELED_ONTOUCH_OUTSIDE, true);
             int animationsStyle = args.getInt(BitDialogConstants.ANIMATIONS_STYLE, 0);
             int gravity = args.getInt(BitDialogConstants.ANIMATIONS_STYLE, Gravity.CENTER);
+            int bgRes = args.getInt(BitDialogConstants.BG_DIALOG, R.drawable.bit_dialog_shape_bg_dialog);
             dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
             dialog.setCancelable(cancelAble);
-            dialog.getWindow().setWindowAnimations(animationsStyle);
-            dialog.getWindow().setGravity(gravity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+            Window mWindow = dialog.getWindow();
+            mWindow.setWindowAnimations(animationsStyle);
+            mWindow.setBackgroundDrawableResource(bgRes);
+            mWindow.setGravity(gravity);
         }
         return dialog;
     }
-    public  void paramer2Text(TextView tv, WidgetParamer mWidgetParamer,View.OnClickListener mOnClickListener) {
+
+    public void paramer2Text(TextView tv, WidgetParamer mWidgetParamer, View.OnClickListener mOnClickListener,boolean bindClickNotListener) {
         CharSequence title = mWidgetParamer.getText();
         tv.setText(title);
-        if (mWidgetParamer.getTextColor() > 0) {
+        if (mWidgetParamer.getTextColorResId() != 0) {
+            tv.setTextColor(getResources().getColor(mWidgetParamer.getTextColorResId()));
+        } else if (mWidgetParamer.getTextColor() != -1) {
             tv.setTextColor(mWidgetParamer.getTextColor());
         }
         if (mWidgetParamer.getTextSize() > 0) {
-            if (mWidgetParamer.getOnWidgetClickListener() != null) {
-                tv.setTag(mWidgetParamer.getOnWidgetClickListener());
-                tv.setOnClickListener(mOnClickListener);
-            }
             tv.setTextSize(mWidgetParamer.getTextSizeUnit(), mWidgetParamer.getTextSize());
+        }
+        if (mWidgetParamer.getOnWidgetClickListener() != null) {
+            tv.setTag(mWidgetParamer.getOnWidgetClickListener());
+            tv.setOnClickListener(mOnClickListener);
+        }else if (bindClickNotListener){
+            tv.setOnClickListener(mOnClickListener);
         }
     }
 

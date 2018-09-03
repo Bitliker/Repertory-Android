@@ -1,26 +1,27 @@
-package com.bitliker.ui.bitdialog.prompt;
+package com.bitliker.ui.bitdialog.input;
 
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.bitliker.ui.bitdialog.R;
 import com.bitliker.ui.bitdialog.common.BaseDialogFragment;
 import com.bitliker.ui.bitdialog.common.BitDialogConstants;
-import com.bitliker.ui.bitdialog.common.listener.PromptWidgetListener;
 import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer;
 
-public class PromptDialogFragment extends BaseDialogFragment implements View.OnClickListener {
+public class InputDialogFragment extends BaseDialogFragment implements View.OnClickListener {
 
     @Override
     public int getInflater() {
-        return R.layout.view_dialog_prompt;
+        return R.layout.view_dialog_input;
     }
 
     @Override
     public void initView(View view, WidgetParamer mTitleWidgetParamer) {
+
         AppCompatTextView titleTv = view.findViewById(R.id.titleTv);
-        AppCompatTextView contentTv = view.findViewById(R.id.contentTv);
+        AppCompatEditText contentEt = view.findViewById(R.id.contentEt);
         AppCompatTextView sureTv = view.findViewById(R.id.sureTv);
         AppCompatTextView cancelTv = view.findViewById(R.id.cancelTv);
         paramer2Text(titleTv, mTitleWidgetParamer, this, false);
@@ -28,8 +29,11 @@ public class PromptDialogFragment extends BaseDialogFragment implements View.OnC
         if (args != null) {
             WidgetParamer mContentWidgetParamer = args.getParcelable(BitDialogConstants.KEY_CONTENT_PARAMER);
             if (mContentWidgetParamer != null) {
-                paramer2Text(contentTv, mContentWidgetParamer, this, false);
+                paramer2Text(contentEt, mContentWidgetParamer, null, false);
             }
+
+
+
             WidgetParamer mPositiveWidgetParamer = args.getParcelable(BitDialogConstants.POSITIVE_PARAMER);
             if (mPositiveWidgetParamer != null) {
                 paramer2Text(sureTv, mPositiveWidgetParamer, this, true);
@@ -59,24 +63,24 @@ public class PromptDialogFragment extends BaseDialogFragment implements View.OnC
 
     @Override
     public void onClick(View v) {
-        PromptWidgetListener mPromptWidgetListener = null;
-        Object object = v.getTag();
-        int id = v.getId();
-        if (object != null && object instanceof PromptWidgetListener) {
-            mPromptWidgetListener = (PromptWidgetListener) object;
-        }
-        if (id == R.id.titleTv || R.id.contentTv == id) {
-            if (mPromptWidgetListener != null) {
-                mPromptWidgetListener.onClick(v);
-            }
-        } else if (R.id.sureTv == id || R.id.cancelTv == id) {
-            if (mPromptWidgetListener != null) {
-                if (!mPromptWidgetListener.onClick(v)) {
-                    dismiss();
-                }
-            } else {
-                dismiss();
-            }
-        }
+//        WidgetParamer.WidgetClickListener mWidgetClickListener = null;
+//        Object object = v.getTag();
+//        int id = v.getId();
+//        if (object != null && object instanceof WidgetParamer.WidgetClickListener) {
+//            mWidgetClickListener = (WidgetParamer.WidgetClickListener) object;
+//        }
+//        if (id == R.id.titleTv || R.id.contentTv == id) {
+//            if (mWidgetClickListener != null) {
+//                mWidgetClickListener.onClick(v,null);
+//            }
+//        } else if (R.id.sureTv == id || R.id.cancelTv == id) {
+//            if (mWidgetClickListener != null) {
+//                if (mWidgetClickListener.onClick(v,null)) {
+//                    dismiss();
+//                }
+//            } else {
+//                dismiss();
+//            }
+//        }
     }
 }

@@ -1,10 +1,17 @@
 package com.bitliker.simple.modular.dialog
 
+import android.app.ProgressDialog.show
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import android.view.View
+import android.widget.Toast
 import com.bitliker.simple.R
 import com.bitliker.simple.common.BaseActivity
 import com.bitliker.ui.bitdialog.BitDialog
+import com.bitliker.ui.bitdialog.common.listener.PromptWidgetListener
+import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer
 
 class DialogTestActivity : BaseActivity() {
 
@@ -12,12 +19,35 @@ class DialogTestActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialog_test)
     }
-    fun onClick(v: View){
-        when(v.id){
-            R.id.promptBtn->{
+
+    fun onClick(v: View) {
+        when (v.id) {
+            R.id.promptBtn -> {
                 BitDialog.createPrompt(this)
-                        .setContent("这个是内容")
-                        .setTitle("这个是标题")
+                        .showPositiveAble(true)
+                        .setContent(WidgetParamer()
+                                .setText("这个是内容")
+                                .setWidgetListener(PromptWidgetListener {
+                                    Log.i("gong", "点击内容！！")
+                                    true
+                                })
+                                .setTextSize(10)
+                                .setTextColorResId(R.color.testColor))
+
+
+                        .setPositive(WidgetParamer("去顶")
+                                .setTextSize(TypedValue.COMPLEX_UNIT_PX,20)
+                                .setWidgetListener(PromptWidgetListener {
+                                    Toast.makeText(ct,"点击了确定！！",Toast.LENGTH_SHORT).show()
+                                    true
+                                }))
+                        .setTitle(WidgetParamer("这个是标题")
+                                .setTextColor(Color.GREEN)
+                                .setTextSize(20)
+                                .setWidgetListener(PromptWidgetListener {
+                                    Log.i("gong", "点击标题！！")
+                                    false
+                                }))
                         .show()
 
 

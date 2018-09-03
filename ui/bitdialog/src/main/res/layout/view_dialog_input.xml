@@ -7,7 +7,6 @@
 
 
     <RelativeLayout
-        android:id="@+id/baseRl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,25 +17,23 @@
             android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
             android:padding="@dimen/bit_dialog_padding"
+            android:text="title"
+            android:textColor="?attr/colorAccent"
             android:textSize="@dimen/bit_dialog_title_ts" />
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/contentTv"
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/contentEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/titleTv"
-            android:gravity="center_horizontal"
-            android:padding="@dimen/bit_dialog_padding"
-            android:paddingBottom="@dimen/bit_dialog_paddingMax"
-            android:paddingTop="@dimen/bit_dialog_paddingMax"
+            android:layout_margin="@dimen/bit_dialog_padding"
+            android:background="@drawable/bit_dialog_shape_bg_input"
+            android:gravity="left"
+            android:hint="@string/bit_dialog_input_hint"
+            android:minHeight="@dimen/bit_dialog_min_input_height"
+            android:textColor="?attr/editTextColor"
             android:textSize="@dimen/bit_dialog_content_ts" />
 
-        <View
-            android:id="@+id/bottomv"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bit_dialog_line"
-            android:layout_below="@id/contentTv"
-            android:background="@color/bit_dialog_line" />
 
     </RelativeLayout>
 
@@ -50,7 +47,7 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/sureTv"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"
@@ -63,7 +60,7 @@
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/cancelTv"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"

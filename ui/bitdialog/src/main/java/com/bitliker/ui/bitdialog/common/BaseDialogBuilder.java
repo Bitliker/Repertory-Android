@@ -1,7 +1,12 @@
 package com.bitliker.ui.bitdialog.common;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.FragmentActivity;
+import android.view.Gravity;
+
+import com.bitliker.ui.bitdialog.R;
+import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer;
 
 /**
  *
@@ -15,12 +20,17 @@ public abstract class BaseDialogBuilder<T extends BaseDialogBuilder> {
     protected boolean cancelable;//是否允许取消
     protected int gravity;//方位
     protected int animationsStyle;//动画效果
+    protected int bgRes;//背景
 
     public BaseDialogBuilder(FragmentActivity ct) {
         if (ct == null) {
             new NullPointerException("FragmentActivity  Can't be empty");
         }
         this.ct = ct;
+        this.cancelable = true;
+        this.canceledOnTouchOutside = true;
+        this.gravity = Gravity.CENTER;
+        this.bgRes = R.drawable.bit_dialog_shape_bg_dialog;
     }
 
 
@@ -29,7 +39,7 @@ public abstract class BaseDialogBuilder<T extends BaseDialogBuilder> {
     }
 
     public T setTitle(WidgetParamer mTitleWidgetParamer) {
-        this.mTitleWidgetParamer=mTitleWidgetParamer;
+        this.mTitleWidgetParamer = mTitleWidgetParamer;
         return getSubclass();
     }
 
@@ -77,6 +87,13 @@ public abstract class BaseDialogBuilder<T extends BaseDialogBuilder> {
         return getSubclass();
     }
 
+
+    public T setBackgroundDrawableResource(@DrawableRes int resId) {
+        this.bgRes = resId;
+        return getSubclass();
+    }
+
+
     /**
      * 获取子类对象
      *
@@ -91,6 +108,7 @@ public abstract class BaseDialogBuilder<T extends BaseDialogBuilder> {
         args.putBoolean(BitDialogConstants.CANCELABLE, cancelable);
         args.putInt(BitDialogConstants.GRAVITY, gravity);
         args.putInt(BitDialogConstants.ANIMATIONS_STYLE, animationsStyle);
+        args.putInt(BitDialogConstants.BG_DIALOG, bgRes);
     }
 
 }

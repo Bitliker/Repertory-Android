@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bit_dialog_line">#e8e8e8</color>
+    <color name="bit_dialog_bg">#FFFFFF</color>
+    <color name="bit_dialog_hint_bg">#e6e6e6</color>
+    <color name="testColor">#0f2fe4</color>
+
+</resources>

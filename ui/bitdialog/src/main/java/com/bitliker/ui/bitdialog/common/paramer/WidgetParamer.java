@@ -1,42 +1,53 @@
-package com.bitliker.ui.bitdialog.common;
+package com.bitliker.ui.bitdialog.common.paramer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.ColorRes;
 import android.util.TypedValue;
-import android.view.View;
-import android.widget.TextView;
 
-import java.io.Serializable;
+import com.bitliker.ui.bitdialog.common.listener.WidgetListener;
 
 /**
  * Created by Bitlike on 2018/1/24.
  */
 
 public class WidgetParamer implements Parcelable {
+    private int textColorResId;
     private int textColor;
     private int textSize;
     private int textSizeUnit;
     private String text;
-    private WidgetClickListener onWidgetClickListener;
+    private WidgetListener mWidgetListener;
 
     public WidgetParamer() {
         this("");
     }
 
     public WidgetParamer(String text) {
+        textColorResId = 0;
         textColor = -1;
         textSize = -1;
         this.text = text;
         this.textSizeUnit = TypedValue.COMPLEX_UNIT_SP;
     }
 
-    public WidgetParamer setWidgetClickListener(WidgetClickListener onWidgetClickListener) {
-        this.onWidgetClickListener = onWidgetClickListener;
+    public WidgetParamer setWidgetListener(WidgetListener mWidgetListener) {
+        this.mWidgetListener = mWidgetListener;
         return this;
     }
 
+    public WidgetListener getOnWidgetClickListener() {
+        return mWidgetListener;
+    }
+
+
     public WidgetParamer setText(String text) {
         this.text = text;
+        return this;
+    }
+
+    public WidgetParamer setTextColorResId(@ColorRes int textColorResId) {
+        this.textColorResId = textColorResId;
         return this;
     }
 
@@ -60,6 +71,10 @@ public class WidgetParamer implements Parcelable {
         return textColor;
     }
 
+    public int getTextColorResId() {
+        return textColorResId;
+    }
+
     public int getTextSize() {
         return textSize;
     }
@@ -69,28 +84,27 @@ public class WidgetParamer implements Parcelable {
     }
 
     public String getText() {
-        return text==null?"":text;
+        return text == null ? "" : text;
     }
 
-    public WidgetClickListener getOnWidgetClickListener() {
-        return onWidgetClickListener;
-    }
 
     protected WidgetParamer(Parcel in) {
+        textColorResId = in.readInt();
         textColor = in.readInt();
         textSize = in.readInt();
         textSizeUnit = in.readInt();
         text = in.readString();
-        onWidgetClickListener = (WidgetClickListener) in.readSerializable();
+        mWidgetListener = (WidgetListener) in.readSerializable();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(textColorResId);
         dest.writeInt(textColor);
         dest.writeInt(textSize);
         dest.writeInt(textSizeUnit);
         dest.writeString(text);
-        dest.writeSerializable(onWidgetClickListener);
+        dest.writeSerializable(mWidgetListener);
     }
 
     @Override
@@ -111,7 +125,5 @@ public class WidgetParamer implements Parcelable {
     };
 
 
-    public interface WidgetClickListener extends Serializable {
-        boolean onClick(View v);
-    }
+
 }
