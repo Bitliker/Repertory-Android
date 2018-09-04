@@ -11,7 +11,7 @@ import com.bitliker.ui.bitdialog.common.listener.WidgetListener;
  * Created by Bitlike on 2018/1/24.
  */
 
-public class WidgetParamer implements Parcelable {
+public class WidgetParameter implements Parcelable {
     private int textColorResId;
     private int textColor;
     private int textSize;
@@ -20,11 +20,11 @@ public class WidgetParamer implements Parcelable {
     private String hint;
     private WidgetListener mWidgetListener;
 
-    public WidgetParamer() {
+    public WidgetParameter() {
         this("");
     }
 
-    public WidgetParamer(String text) {
+    public WidgetParameter(String text) {
         textColorResId = 0;
         textColor = -1;
         textSize = -1;
@@ -32,7 +32,7 @@ public class WidgetParamer implements Parcelable {
         this.textSizeUnit = TypedValue.COMPLEX_UNIT_SP;
     }
 
-    public WidgetParamer setWidgetListener(WidgetListener mWidgetListener) {
+    public WidgetParameter setWidgetListener(WidgetListener mWidgetListener) {
         this.mWidgetListener = mWidgetListener;
         return this;
     }
@@ -47,33 +47,33 @@ public class WidgetParamer implements Parcelable {
         return hint==null?"":hint;
     }
 
-    public WidgetParamer setHint(String hint) {
+    public WidgetParameter setHint(String hint) {
         this.hint = hint;
         return this;
     }
 
 
-    public WidgetParamer setText(String text) {
+    public WidgetParameter setText(String text) {
         this.text = text;
         return this;
     }
 
-    public WidgetParamer setTextColorResId(@ColorRes int textColorResId) {
+    public WidgetParameter setTextColorResId(@ColorRes int textColorResId) {
         this.textColorResId = textColorResId;
         return this;
     }
 
-    public WidgetParamer setTextColor(int textColor) {
+    public WidgetParameter setTextColor(int textColor) {
         this.textColor = textColor;
         return this;
     }
 
-    public WidgetParamer setTextSize(int textSize) {
+    public WidgetParameter setTextSize(int textSize) {
         this.textSize = textSize;
         return setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
     }
 
-    public WidgetParamer setTextSize(int textSizeUnit, int textSize) {
+    public WidgetParameter setTextSize(int textSizeUnit, int textSize) {
         this.textSize = textSize;
         this.textSizeUnit = textSizeUnit;
         return this;
@@ -100,14 +100,13 @@ public class WidgetParamer implements Parcelable {
     }
 
 
-    protected WidgetParamer(Parcel in) {
+    protected WidgetParameter(Parcel in) {
         textColorResId = in.readInt();
         textColor = in.readInt();
         textSize = in.readInt();
         textSizeUnit = in.readInt();
         text = in.readString();
         hint = in.readString();
-        mWidgetListener = (WidgetListener) in.readSerializable();
     }
 
     @Override
@@ -118,7 +117,6 @@ public class WidgetParamer implements Parcelable {
         dest.writeInt(textSizeUnit);
         dest.writeString(text);
         dest.writeString(hint);
-        dest.writeSerializable(mWidgetListener);
     }
 
     @Override
@@ -126,15 +124,15 @@ public class WidgetParamer implements Parcelable {
         return 0;
     }
 
-    public static final Creator<WidgetParamer> CREATOR = new Creator<WidgetParamer>() {
+    public static final Creator<WidgetParameter> CREATOR = new Creator<WidgetParameter>() {
         @Override
-        public WidgetParamer createFromParcel(Parcel in) {
-            return new WidgetParamer(in);
+        public WidgetParameter createFromParcel(Parcel in) {
+            return new WidgetParameter(in);
         }
 
         @Override
-        public WidgetParamer[] newArray(int size) {
-            return new WidgetParamer[size];
+        public WidgetParameter[] newArray(int size) {
+            return new WidgetParameter[size];
         }
     };
 

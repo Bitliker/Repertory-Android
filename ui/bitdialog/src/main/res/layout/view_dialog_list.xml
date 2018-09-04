@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/bit_dialog_padding"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:background="@drawable/bit_dialog_shape_bg_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/selectAllTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/bit_dialog_padding"
+            android:text="@string/bit_dialog_select_all"
+            android:textColor="?attr/colorAccent"
+            android:textSize="@dimen/bit_dialog_operation_ts" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/sureTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/bit_dialog_padding"
+            android:text="@string/bit_dialog_sure"
+            android:textColor="?attr/colorAccent"
+            android:textSize="@dimen/bit_dialog_operation_ts" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/sureTv"
+            android:layout_toRightOf="@id/selectAllTv"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:lines="1"
+            android:padding="@dimen/bit_dialog_padding"
+            android:textColor="@android:color/background_dark"
+            android:textSize="@dimen/bit_dialog_content_ts" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bit_dialog_line"
+            android:layout_below="@id/titleTv"
+            android:background="@color/bit_dialog_line" />
+
+        <ListView
+            android:id="@+id/mListView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@id/titleTv"
+            android:layout_marginTop="1px"
+            android:divider="@color/bit_dialog_line"
+            android:dividerHeight="@dimen/bit_dialog_line" />
+
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/cancelTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bit_dialog_selector_bg_radian"
+        android:clickable="true"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:layout_marginTop="@dimen/bit_dialog_paddingMax"
+        android:padding="@dimen/bit_dialog_padding"
+        android:text="@string/bit_dialog_cancel"
+        android:textColor="?attr/colorAccent"
+        android:textSize="@dimen/bit_dialog_content_ts" />
+</LinearLayout>

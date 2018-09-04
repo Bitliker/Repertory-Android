@@ -3,6 +3,7 @@
     <color name="bit_dialog_line">#e8e8e8</color>
     <color name="bit_dialog_bg">#FFFFFF</color>
     <color name="bit_dialog_hint_bg">#e6e6e6</color>
+    <color name="bit_dialog_transparent">#00ffffff</color>
     <color name="testColor">#0f2fe4</color>
 
 </resources>

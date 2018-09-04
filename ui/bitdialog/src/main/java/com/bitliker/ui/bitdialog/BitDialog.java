@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 
 import com.bitliker.ui.bitdialog.input.InputDialogBuilder;
+import com.bitliker.ui.bitdialog.list.ListDialogBuilder;
 import com.bitliker.ui.bitdialog.prompt.PromptDialogBuilder;
 
 /**
@@ -19,6 +20,10 @@ public class BitDialog {
 
     public static InputDialogBuilder createInput(FragmentActivity ct) {
         return new InputDialogBuilder(ct);
+    }
+
+    public static ListDialogBuilder createList(FragmentActivity ct) {
+        return new ListDialogBuilder<String>(ct);
     }
 
 }

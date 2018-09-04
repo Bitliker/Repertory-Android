@@ -7,17 +7,15 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bitliker.ui.bitdialog.R;
-import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer;
+import com.bitliker.ui.bitdialog.common.paramer.WidgetParameter;
 
 public abstract class BaseDialogFragment extends AppCompatDialogFragment {
 
@@ -48,14 +46,14 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
     public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle args = getArguments();
-        WidgetParamer mTitleWidgetParamer = null;
+        WidgetParameter mTitleWidgetParameter = null;
         if (args != null) {
-            mTitleWidgetParamer = args.getParcelable(BitDialogConstants.KEY_TITLE_PARAMER);
+            mTitleWidgetParameter = args.getParcelable(BitDialogConstants.KEY_TITLE_PARAMER);
         }
-        if (mTitleWidgetParamer == null) {
-            mTitleWidgetParamer = new WidgetParamer(getAppName(getContext()));
+        if (mTitleWidgetParameter == null) {
+            mTitleWidgetParameter = new WidgetParameter(getAppName(getContext()));
         }
-        initView(view, mTitleWidgetParamer);
+        initView(view, mTitleWidgetParameter);
     }
 
 
@@ -74,7 +72,7 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
             boolean cancelAble = args.getBoolean(BitDialogConstants.CANCELABLE, true);
             boolean canceledOnTouchOutside = args.getBoolean(BitDialogConstants.CANCELED_ONTOUCH_OUTSIDE, true);
             int animationsStyle = args.getInt(BitDialogConstants.ANIMATIONS_STYLE, 0);
-            int gravity = args.getInt(BitDialogConstants.ANIMATIONS_STYLE, Gravity.CENTER);
+            int gravity = args.getInt(BitDialogConstants.GRAVITY, Gravity.CENTER);
             int bgRes = args.getInt(BitDialogConstants.BG_DIALOG, R.drawable.bit_dialog_shape_bg_dialog);
             dialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
             dialog.setCancelable(cancelAble);
@@ -88,28 +86,28 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
         return dialog;
     }
 
-    public void paramer2Text(TextView tv, WidgetParamer mWidgetParamer, View.OnClickListener mOnClickListener, boolean bindClickNotListener) {
-        String text = mWidgetParamer.getText();
-        String hint = mWidgetParamer.getHint();
+    public void paramer2Text(TextView tv, WidgetParameter mWidgetParameter, View.OnClickListener mOnClickListener, boolean bindClickNotListener) {
+        String text = mWidgetParameter.getText();
+        String hint = mWidgetParameter.getHint();
         tv.setText(text);
         tv.setHint(hint);
-        if (mWidgetParamer.getTextColorResId() != 0) {
-            tv.setTextColor(getResources().getColor(mWidgetParamer.getTextColorResId()));
-        } else if (mWidgetParamer.getTextColor() != -1) {
-            tv.setTextColor(mWidgetParamer.getTextColor());
+        if (mWidgetParameter.getTextColorResId() != 0) {
+            tv.setTextColor(getResources().getColor(mWidgetParameter.getTextColorResId()));
+        } else if (mWidgetParameter.getTextColor() != -1) {
+            tv.setTextColor(mWidgetParameter.getTextColor());
         }
-        if (mWidgetParamer.getTextSize() > 0) {
-            tv.setTextSize(mWidgetParamer.getTextSizeUnit(), mWidgetParamer.getTextSize());
+        if (mWidgetParameter.getTextSize() > 0) {
+            tv.setTextSize(mWidgetParameter.getTextSizeUnit(), mWidgetParameter.getTextSize());
         }
-        if (mWidgetParamer.getOnWidgetClickListener() != null) {
-            tv.setTag(mWidgetParamer.getOnWidgetClickListener());
+        if (mWidgetParameter.getOnWidgetClickListener() != null) {
+            tv.setTag(mWidgetParameter.getOnWidgetClickListener());
             tv.setOnClickListener(mOnClickListener);
         } else if (bindClickNotListener) {
             tv.setOnClickListener(mOnClickListener);
         }
     }
 
-    public abstract void initView(View view, WidgetParamer mTitleWidgetParamer);
+    public abstract void initView(View view, WidgetParameter mTitleWidgetParameter);
 
 
     public abstract int getInflater();

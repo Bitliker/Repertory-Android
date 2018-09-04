@@ -10,7 +10,7 @@ import com.bitliker.ui.bitdialog.common.BaseDialogFragment;
 import com.bitliker.ui.bitdialog.common.BitDialogConstants;
 import com.bitliker.ui.bitdialog.common.listener.InputWidgetListener;
 import com.bitliker.ui.bitdialog.common.listener.PromptWidgetListener;
-import com.bitliker.ui.bitdialog.common.paramer.WidgetParamer;
+import com.bitliker.ui.bitdialog.common.paramer.WidgetParameter;
 
 public class InputDialogFragment extends BaseDialogFragment implements View.OnClickListener {
 
@@ -22,21 +22,21 @@ public class InputDialogFragment extends BaseDialogFragment implements View.OnCl
     }
 
     @Override
-    public void initView(View view, WidgetParamer mTitleWidgetParamer) {
+    public void initView(View view, WidgetParameter mTitleWidgetParameter) {
         AppCompatTextView titleTv = view.findViewById(R.id.titleTv);
         contentEt = view.findViewById(R.id.contentEt);
         AppCompatTextView sureTv = view.findViewById(R.id.sureTv);
         AppCompatTextView cancelTv = view.findViewById(R.id.cancelTv);
-        paramer2Text(titleTv, mTitleWidgetParamer, this, false);
+        paramer2Text(titleTv, mTitleWidgetParameter, this, false);
         Bundle args = getArguments();
         if (args != null) {
-            WidgetParamer mContentWidgetParamer = args.getParcelable(BitDialogConstants.KEY_CONTENT_PARAMER);
-            if (mContentWidgetParamer != null) {
-                paramer2Text(contentEt, mContentWidgetParamer, null, false);
+            WidgetParameter mContentWidgetParameter = args.getParcelable(BitDialogConstants.KEY_CONTENT_PARAMER);
+            if (mContentWidgetParameter != null) {
+                paramer2Text(contentEt, mContentWidgetParameter, null, false);
             }
-            WidgetParamer mPositiveWidgetParamer = args.getParcelable(BitDialogConstants.POSITIVE_PARAMER);
-            if (mPositiveWidgetParamer != null) {
-                paramer2Text(sureTv, mPositiveWidgetParamer, this, true);
+            WidgetParameter mPositiveWidgetParameter = args.getParcelable(BitDialogConstants.POSITIVE_PARAMER);
+            if (mPositiveWidgetParameter != null) {
+                paramer2Text(sureTv, mPositiveWidgetParameter, this, true);
             } else {
                 sureTv.setOnClickListener(this);
             }
@@ -46,9 +46,9 @@ public class InputDialogFragment extends BaseDialogFragment implements View.OnCl
                 sureTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_l_radian);
                 cancelTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_r_radian);
                 cancelTv.setVisibility(View.VISIBLE);
-                WidgetParamer mNegativeWidgetParamer = args.getParcelable(BitDialogConstants.NEGATIVE_PARAMER);
-                if (mNegativeWidgetParamer != null) {
-                    paramer2Text(cancelTv, mNegativeWidgetParamer, this, true);
+                WidgetParameter mNegativeWidgetParameter = args.getParcelable(BitDialogConstants.NEGATIVE_PARAMER);
+                if (mNegativeWidgetParameter != null) {
+                    paramer2Text(cancelTv, mNegativeWidgetParameter, this, true);
                 } else {
                     cancelTv.setOnClickListener(this);
                 }
