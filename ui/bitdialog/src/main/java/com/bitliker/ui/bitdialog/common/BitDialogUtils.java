@@ -3,6 +3,12 @@ package com.bitliker.ui.bitdialog.common;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.Gravity;
+import android.view.View;
+
+import com.bitliker.ui.bitdialog.BitDialog;
+import com.bitliker.ui.bitdialog.R;
+import com.bitliker.ui.bitdialog.common.listener.PromptWidgetListener;
 
 public class BitDialogUtils {
     /**
