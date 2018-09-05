@@ -1,12 +1,22 @@
 apply plugin: rootProject.ext.plugin.lib
-
+ext.repertoyAllName = 'com.bitliker.android.ui'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
+ext.versionCode = '1.0.0'                //发布版本号
+ext.versionName = 'v' + versionCode      //发布版本名字
+ext.repertoyName = 'ui'                //仓库名称
+ext.projectName = 'BitDialig'              //项目名称
+ext.organizationName = 'bitliker-android'            //组织名称
+ext.desction = '对于DialogFragment的封装实现提示框、输入框、列表选择框窗口调用'            //备注
+def getVersionCodeInt() {
+    def versionCodeInt = versionCode.replace(".","")
+    return versionCodeInt.toInteger()
+}
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 1
-        versionName "1.0.0"
+        versionCode getVersionCodeInt()
+        versionName versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -23,12 +33,5 @@ dependencies {
 }
 
 
-ext.repertoyAllName = 'com.bitliker.android.controller'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
-ext.versionCode = '1.0.0'                //发布版本号
-ext.versionName = 'v' + versionCode      //发布版本名字
-ext.repertoyName = 'controller'                //仓库名称
-ext.projectName = 'BitJson'              //项目名称
-ext.organizationName = 'bitliker-android'            //组织名称
-ext.desction = '对于fastjson的封装防错处理，适合实际项目的运用，避免由于接口等的不规范引起的错误'            //备注
 
-//apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
+apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
