@@ -1,6 +1,14 @@
 ## 对于DialogFragment的封装实现提示框、输入框、列表选择框窗口调用
 ### 使用
-
+#### Maven
+    <dependency>
+      <groupId>com.bitliker.android.ui</groupId>
+      <artifactId>bitdialog</artifactId>
+      <version>v1.0.0</version>
+      <type>pom</type>
+    </dependency>
+#### Gradle
+    implementation 'com.bitliker.android.ui:bitdialog:v1.0.0'
 #### 提示框
       BitDialog.createPrompt(null)
                     .showNegativeAble(true)//是否显示确认按钮
