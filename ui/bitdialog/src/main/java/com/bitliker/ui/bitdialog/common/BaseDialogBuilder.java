@@ -15,11 +15,11 @@ import com.bitliker.ui.bitdialog.common.paramer.WidgetParameter;
 public abstract class BaseDialogBuilder<T extends BaseDialogBuilder> {
     protected final String TAG = getClass().getSimpleName();
     protected FragmentActivity ct;//界面载体
-    private boolean showPositiveAble;
-    private boolean showNegativeAble;
     private WidgetParameter mTitleWidgetParameter;//标题配置
     private WidgetParameter mPositiveWidgetParameter;//确定配置
     private WidgetParameter mNegativeWidgetParameter;//取消配置
+    protected boolean showPositiveAble;
+    protected boolean showNegativeAble;
     protected boolean canceledOnTouchOutside;//是否可以点击外部关闭窗口
     protected boolean cancelable;//是否允许取消
     protected int gravity;//方位

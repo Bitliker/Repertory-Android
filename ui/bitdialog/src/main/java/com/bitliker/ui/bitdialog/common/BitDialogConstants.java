@@ -14,7 +14,6 @@ public interface BitDialogConstants {
     String NEGATIVE_SHOW_ABLE="negative_show_able";//是否显示取消
     String POSITIVE_SHOW_ABLE="positive_show_able";//是否显示确定
 
-    String LIST_MODELS="list_models";//列表对象
-    String LIST_LISTENER="list_listener";//列表选择事件
+    String LIST_PARAMETER="list_parameter";//列表参数
 
 }

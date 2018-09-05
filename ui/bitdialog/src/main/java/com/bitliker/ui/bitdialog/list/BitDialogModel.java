@@ -3,12 +3,12 @@ package com.bitliker.ui.bitdialog.list;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class BitDialogModel<T> implements Parcelable {
+public class BitDialogModel implements Parcelable {
     private int id;
     private boolean selected;
     private float sort;
     private String showValues;
-    private T data;
+    private String  data;
 
     public BitDialogModel(String showValues) {
         this.showValues = showValues;
@@ -46,11 +46,11 @@ public class BitDialogModel<T> implements Parcelable {
         this.showValues = showValues;
     }
 
-    public T getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -59,6 +59,7 @@ public class BitDialogModel<T> implements Parcelable {
         selected = in.readByte() != 0;
         sort = in.readFloat();
         showValues = in.readString();
+        data = in.readString();
     }
 
     @Override
@@ -67,6 +68,7 @@ public class BitDialogModel<T> implements Parcelable {
         dest.writeByte((byte) (selected ? 1 : 0));
         dest.writeFloat(sort);
         dest.writeString(showValues);
+        dest.writeString(data);
     }
 
     @Override

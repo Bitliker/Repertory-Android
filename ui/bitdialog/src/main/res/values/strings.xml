@@ -2,6 +2,7 @@
 <string name="bit_dialog_sure">确定</string>
 <string name="bit_dialog_cancel">取消</string>
 <string name="bit_dialog_input_hint">请输入</string>
-<string name="bit_dialog_select_all">全选</string>
+<string name="bit_dialog_select_all">  全选  </string>
+<string name="bit_dialog_noselect_all">全不选</string>
 
 </resources>

@@ -7,6 +7,7 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.bitliker.controller.bitjson.JSONUtil
 import com.bitliker.simple.R
 import com.bitliker.simple.common.BaseActivity
 import com.bitliker.ui.bitdialog.BitDialog
@@ -89,14 +90,12 @@ class DialogTestActivity : BaseActivity() {
                         .show()
             }
             R.id.listBtn -> {
-                var models = ArrayList<BitDialogModel<String>>()
+                var models = ArrayList<BitDialogModel>()
                 for (i in 1..20) {
                     models.add(BitDialogModel("这个是$i"))
                 }
 
                 BitDialog.createList(this)
-                        .showPositiveAble(true)
-
                         .setPositive(WidgetParameter("确定的")
                                 .setTextSize(TypedValue.COMPLEX_UNIT_PX, 20)
                                 .setWidgetListener(InputWidgetListener { _: View, ed: EditText ->
@@ -116,9 +115,9 @@ class DialogTestActivity : BaseActivity() {
                                     Log.i("gong", "点击标题！！")
                                     false
                                 }))
-                        .show(models, OnSelectListener{ sure: Boolean, selectModels:BitDialogModel<String> ->
-                            Toast.makeText(ct,"点击了这个=${selectModels.showValues}",Toast.LENGTH_SHORT).show()
-                            true
+                        .show(models, OnMultiSelectListener { sure, selectModels ->
+                                Toast.makeText(ct,"点击了这个=${JSONUtil.toJSONString(selectModels)}",Toast.LENGTH_SHORT).show()
+                                false
                         })
             }
         }

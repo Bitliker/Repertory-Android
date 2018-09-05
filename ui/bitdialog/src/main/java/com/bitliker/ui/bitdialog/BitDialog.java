@@ -23,7 +23,7 @@ public class BitDialog {
     }
 
     public static ListDialogBuilder createList(FragmentActivity ct) {
-        return new ListDialogBuilder<String>(ct);
+        return new ListDialogBuilder(ct);
     }
 
 }

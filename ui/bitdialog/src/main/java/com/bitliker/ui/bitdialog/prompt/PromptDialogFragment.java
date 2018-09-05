@@ -18,40 +18,25 @@ public class PromptDialogFragment extends BaseDialogFragment implements View.OnC
     }
 
     @Override
-    public void initView(View view, WidgetParameter mTitleWidgetParameter) {
+    public void initView(View view) {
         AppCompatTextView titleTv = view.findViewById(R.id.titleTv);
         AppCompatTextView contentTv = view.findViewById(R.id.contentTv);
         AppCompatTextView sureTv = view.findViewById(R.id.sureTv);
         AppCompatTextView cancelTv = view.findViewById(R.id.cancelTv);
-        paramer2Text(titleTv, mTitleWidgetParameter, this, false);
         Bundle args = getArguments();
         if (args != null) {
+            //标题
+            doCommonTitle(titleTv, args, this);
+            //确定按钮
+            doCommonSure(sureTv, args, this);
+            //取消按钮
+            doCommonCancel(cancelTv, args, this);
+            //确定按钮和取消按钮显示的背景图切换
+            doSureAndCanCelaShow(sureTv,cancelTv);
+            //内容
             WidgetParameter mContentWidgetParameter = args.getParcelable(BitDialogConstants.KEY_CONTENT_PARAMER);
             if (mContentWidgetParameter != null) {
                 paramer2Text(contentTv, mContentWidgetParameter, this, false);
-            }
-            WidgetParameter mPositiveWidgetParameter = args.getParcelable(BitDialogConstants.POSITIVE_PARAMER);
-            if (mPositiveWidgetParameter != null) {
-                paramer2Text(sureTv, mPositiveWidgetParameter, this, true);
-            } else {
-                sureTv.setOnClickListener(this);
-            }
-            boolean showPositiveAble = args.getBoolean(BitDialogConstants.NEGATIVE_SHOW_ABLE, true);
-            if (showPositiveAble) {
-                //显示取消时候
-                sureTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_l_radian);
-                cancelTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_r_radian);
-                cancelTv.setVisibility(View.VISIBLE);
-                WidgetParameter mNegativeWidgetParameter = args.getParcelable(BitDialogConstants.NEGATIVE_PARAMER);
-                if (mNegativeWidgetParameter != null) {
-                    paramer2Text(cancelTv, mNegativeWidgetParameter, this, true);
-                } else {
-                    cancelTv.setOnClickListener(this);
-                }
-            } else {
-                //不显示取消
-                cancelTv.setVisibility(View.GONE);
-                sureTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_radian);
             }
         }
     }

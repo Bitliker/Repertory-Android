@@ -45,15 +45,57 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
     @Override
     public final void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Bundle args = getArguments();
-        WidgetParameter mTitleWidgetParameter = null;
-        if (args != null) {
-            mTitleWidgetParameter = args.getParcelable(BitDialogConstants.KEY_TITLE_PARAMER);
+        initView(view);
+    }
+
+    public void doSureAndCanCelaShow(TextView sureTv,TextView cancelTv){
+        if (cancelTv.getVisibility() == View.VISIBLE && sureTv.getVisibility() == View.VISIBLE) {//两个都显示
+            sureTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_l_radian);
+            cancelTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_r_radian);
+        } else if (cancelTv.getVisibility() == View.VISIBLE && sureTv.getVisibility() == View.GONE) {
+            //显示取消不显示确定
+            cancelTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_radian);
+        } else if (cancelTv.getVisibility() == View.GONE && sureTv.getVisibility() == View.VISIBLE) {
+            //显示确定不显示取消
+            sureTv.setBackgroundResource(R.drawable.bit_dialog_selector_bg_b_radian);
         }
+    }
+
+
+    public void doCommonTitle(TextView titleTv, Bundle args, View.OnClickListener mOnClickListener) {
+        WidgetParameter mTitleWidgetParameter = args.getParcelable(BitDialogConstants.KEY_TITLE_PARAMER);
         if (mTitleWidgetParameter == null) {
             mTitleWidgetParameter = new WidgetParameter(getAppName(getContext()));
         }
-        initView(view, mTitleWidgetParameter);
+        paramer2Text(titleTv, mTitleWidgetParameter, mOnClickListener, false);
+    }
+
+
+    public void doCommonSure(TextView sureTv, Bundle args, View.OnClickListener mOnClickListener) {
+        if (args.getBoolean(BitDialogConstants.POSITIVE_SHOW_ABLE, true)) {
+            sureTv.setVisibility(View.VISIBLE);
+            WidgetParameter mPositiveWidgetParameter = args.getParcelable(BitDialogConstants.POSITIVE_PARAMER);
+            if (mPositiveWidgetParameter != null) {
+                paramer2Text(sureTv, mPositiveWidgetParameter, mOnClickListener, true);
+            } else {
+                sureTv.setOnClickListener(mOnClickListener);
+            }
+        } else {
+            sureTv.setVisibility(View.GONE);
+        }
+    }
+
+    public void doCommonCancel(TextView cancelTv, Bundle args, View.OnClickListener mOnClickListener) {
+        if (args.getBoolean(BitDialogConstants.NEGATIVE_SHOW_ABLE, true)) {
+            WidgetParameter mNegativeWidgetParameter = args.getParcelable(BitDialogConstants.NEGATIVE_PARAMER);
+            if (mNegativeWidgetParameter != null) {
+                paramer2Text(cancelTv, mNegativeWidgetParameter, mOnClickListener, true);
+            } else {
+                cancelTv.setOnClickListener(mOnClickListener);
+            }
+        } else {
+            cancelTv.setVisibility(View.GONE);
+        }
     }
 
 
@@ -107,7 +149,7 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
         }
     }
 
-    public abstract void initView(View view, WidgetParameter mTitleWidgetParameter);
+    public abstract void initView(View view);
 
 
     public abstract int getInflater();
@@ -137,4 +179,6 @@ public abstract class BaseDialogFragment extends AppCompatDialogFragment {
         }
         return null;
     }
+
+
 }
