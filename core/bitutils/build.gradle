@@ -34,4 +34,4 @@ dependencies {
 
 
 
-apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
+//apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
