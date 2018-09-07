@@ -1,7 +1,6 @@
 package com.bitliker.simple.modular.scheduler
 
 import android.app.DatePickerDialog
-import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
 import com.bitliker.simple.R
@@ -12,14 +11,17 @@ import kotlinx.android.synthetic.main.activity_scheduler.*
 import java.util.*
 
 class SchedulerTestActivity : BaseActivity() {
+    override fun initLayout(): Int {
+        return R.layout.activity_scheduler;
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scheduler)
+    override fun init() {
         addBtm.setOnClickListener(mOnClickListener)
         deleteBtn.setOnClickListener(mOnClickListener)
         findBtn.setOnClickListener(mOnClickListener)
     }
+
+
 
     private var mOnClickListener=View.OnClickListener {v->
         when (v.id) {

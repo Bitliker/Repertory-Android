@@ -1,7 +1,6 @@
 package com.bitliker.simple
 
 import android.content.Intent
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.bitliker.simple.common.BaseActivity
@@ -14,13 +13,16 @@ import com.bitliker.simple.modular.scheduler.SchedulerTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
-
     private var mCommonSelectAdapter: CommonSelectAdapter? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+    override fun initLayout(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun init() {
         initView()
     }
+
 
     private fun initView() {
         mRecyclerView.layoutManager = LinearLayoutManager(ct)

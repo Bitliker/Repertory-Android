@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/progressImg"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/bitutils_ic_simple_load" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/progressTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressImg"
+        android:textColor="#8a8a8a" />
+
+</LinearLayout>

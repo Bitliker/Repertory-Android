@@ -35,7 +35,6 @@ dependencies {
     annotationProcessor rootProject.ext.expand.glideCompiler
     implementation project(':bitjson')
     implementation project(':bitdialog')
+    implementation project(':bitutils')
 }
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'

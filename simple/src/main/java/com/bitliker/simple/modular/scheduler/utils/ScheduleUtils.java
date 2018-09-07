@@ -11,16 +11,12 @@ import android.net.Uri;
 import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
-import android.util.SparseArray;
 
 import com.bitliker.controller.bitjson.JSONUtil;
-import com.bitliker.controller.bitjson.JSONUtils;
 import com.bitliker.simple.modular.scheduler.model.Schedule;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TimeZone;
 
 public class ScheduleUtils {

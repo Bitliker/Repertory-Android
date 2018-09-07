@@ -19,11 +19,13 @@ import com.bitliker.ui.bitdialog.common.paramer.WidgetParameter
 import com.bitliker.ui.bitdialog.list.BitDialogModel
 
 class DialogTestActivity : BaseActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dialog_test)
+    override fun initLayout(): Int {
+        return R.layout.activity_dialog_test
     }
+
+    override fun init() {
+    }
+
 
     fun onClick(v: View) {
         when (v.id) {

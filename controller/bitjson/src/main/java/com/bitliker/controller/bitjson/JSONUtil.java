@@ -274,8 +274,7 @@ public class JSONUtil {
                     Method m = tClass.getMethod("set" + name, type);
                     m.invoke(t, val);
                 } catch (Exception e) {
-                    System.out.print("出错了" + e.getMessage());
-                }
+               }
             }
         } catch (Exception e) {
 
