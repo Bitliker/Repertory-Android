@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
-            android:padding="@dimen/bit_dialog_padding"
+            android:paddingTop="@dimen/bit_dialog_padding"
             android:textSize="@dimen/bit_dialog_title_ts" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/titleTv"
             android:gravity="center_horizontal"
-            android:padding="@dimen/bit_dialog_padding"
             android:paddingBottom="@dimen/bit_dialog_paddingMax"
             android:paddingTop="@dimen/bit_dialog_paddingMax"
             android:textSize="@dimen/bit_dialog_content_ts" />
@@ -54,7 +53,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"
-            android:padding="@dimen/bit_dialog_padding"
+            android:padding="@dimen/bit_dialog_padding_l"
             android:text="@string/bit_dialog_sure"
             android:textColor="?attr/colorAccent"
             android:textSize="@dimen/bit_dialog_content_ts" />
@@ -67,7 +66,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"
-            android:padding="@dimen/bit_dialog_padding"
+            android:padding="@dimen/bit_dialog_padding_l"
             android:text="@string/bit_dialog_cancel"
             android:textColor="?attr/colorAccent"
             android:textSize="@dimen/bit_dialog_content_ts" />

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.bitliker.controller.bitjson.JSONUtil
+import com.bitliker.core.bitutils.util.ToastUtils
 import com.bitliker.simple.R
 import com.bitliker.simple.common.BaseActivity
 import com.bitliker.ui.bitdialog.BitDialog
@@ -40,14 +41,10 @@ class DialogTestActivity : BaseActivity() {
                                 })
                                 .setTextSize(10)
                                 .setTextColorResId(R.color.testColor))
-
-
-                        .setPositive(WidgetParameter("去顶")
-                                .setTextSize(TypedValue.COMPLEX_UNIT_PX, 20)
-                                .setWidgetListener(PromptWidgetListener {
-                                    Toast.makeText(ct, "点击了确定！！", Toast.LENGTH_SHORT).show()
-                                    true
-                                }))
+                        .setPositive("确定"){
+                            ToastUtils.showShort("点击了确定！！")
+                            true
+                        }
                         .setTitle(WidgetParameter("这个是标题")
                                 .setTextColor(Color.GREEN)
                                 .setTextSize(20)

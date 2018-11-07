@@ -1,12 +1,15 @@
 include ':simple'
 //封装开源框架
-include ':bitjson', ':bitplayer'
+include ':bitjson', ':bitplayer', ':bitnetwork'
 //ui
-include ':bitdialog'
+include ':bitdialog', ':bitrefreshlayout', ':bitrectclerviewutils'
 //core
 include ':bitutils'
 
 project(':bitjson').projectDir = new File("controller/bitjson")
+project(':bitnetwork').projectDir = new File("controller/bitnetwork")
 project(':bitplayer').projectDir = new File("controller/bitplayer")
 project(':bitdialog').projectDir = new File("ui/bitdialog")
+project(':bitrefreshlayout').projectDir = new File("ui/bitrefreshlayout")
+project(':bitrectclerviewutils').projectDir = new File("ui/bitrectclerviewutils")
 project(':bitutils').projectDir = new File("core/bitutils")

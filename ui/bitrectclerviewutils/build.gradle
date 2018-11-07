@@ -1,0 +1,41 @@
+apply plugin: rootProject.ext.plugin.lib
+
+ext.repertoyAllName = 'com.bitliker.android.ui'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
+ext.versionCode = '1.0.0'                //发布版本号
+ext.versionName = 'v' + versionCode      //发布版本名字
+ext.repertoyName = 'ui'                //仓库名称
+ext.projectName = 'BitRectclerviewUtils'              //项目名称
+ext.organizationName = 'bitliker-android'            //组织名称
+ext.desction = '封装RecyclerView相关功能'            //备注
+
+def getVersionCodeInt() {
+    def versionCodeInt = versionCode.replace(".", "")
+    return versionCodeInt.toInteger()
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode getVersionCodeInt()
+        versionName versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation rootProject.ext.expand.supportV7
+    implementation rootProject.ext.expand.recyclerview
+}
+
+
+
+//apply from: "https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"

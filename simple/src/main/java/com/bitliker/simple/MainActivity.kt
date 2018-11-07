@@ -8,6 +8,7 @@ import com.bitliker.simple.common.CommonSelectAdapter
 import com.bitliker.simple.common.model.CommonModel
 import com.bitliker.simple.common.utils.OnRecyclerClickLister
 import com.bitliker.simple.modular.dialog.DialogTestActivity
+import com.bitliker.simple.modular.network.NetWorkTestActivity
 import com.bitliker.simple.modular.recyclerview.RecyclerTestActivity
 import com.bitliker.simple.modular.scheduler.SchedulerTestActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -56,6 +57,10 @@ class MainActivity : BaseActivity() {
         model = CommonModel()
         model.name = "Dialog"
         model.cazz = DialogTestActivity::class.java
+        models.add(model)
+        model = CommonModel()
+        model.name = "NetWork"
+        model.cazz = NetWorkTestActivity::class.java
         models.add(model)
         return models
 

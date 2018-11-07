@@ -1,6 +1,6 @@
 apply plugin: rootProject.ext.plugin.lib
 
-ext.versionCode = '1.1.7.1'                //版本号
+ext.versionCode = '1.1.7.2'                //版本号
 ext.versionName = 'v' + versionCode      //版本名字
 ext.repertoyAllName = 'com.bitliker.android.controller'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
 ext.repertoyName = 'controller'                //仓库名称
@@ -34,4 +34,4 @@ dependencies {
     api rootProject.ext.expand.fastjsonAndroid
 }
 
-//apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
+apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"

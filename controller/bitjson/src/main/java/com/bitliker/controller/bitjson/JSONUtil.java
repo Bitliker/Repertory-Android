@@ -5,6 +5,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -234,9 +235,20 @@ public class JSONUtil {
         return builder.toString();
     }
 
+    public static final <T> T parseObject(String text, Class<T> clazz) {
+        return JSON.parseObject(text, clazz, new Feature[0]);
+    }
+
+    public static final <T> List<T> parseArray(String text, Class<T> clazz) {
+        return JSON.parseArray(text, clazz);
+    }
 
     public static String toJSONString(Object o) {
-        return mapToJson(toJSONMap(o));
+        try {
+            return JSON.toJSONString(o);
+        } catch (Exception e) {
+            return mapToJson(toJSONMap(o));
+        }
     }
 
 
@@ -274,7 +286,7 @@ public class JSONUtil {
                     Method m = tClass.getMethod("set" + name, type);
                     m.invoke(t, val);
                 } catch (Exception e) {
-               }
+                }
             }
         } catch (Exception e) {
 
