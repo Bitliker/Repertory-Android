@@ -1,15 +1,18 @@
 apply plugin: rootProject.ext.plugin.lib
 ext.repertoyAllName = 'com.bitliker.android.core'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
-ext.versionCode = '1.0.0'                //发布版本号
+ext.versionCode = '1.0.1'                //发布版本号
 ext.versionName = 'v' + versionCode      //发布版本名字
 ext.repertoyName = 'core'                //仓库名称
 ext.projectName = 'BitUtils'              //项目名称
 ext.organizationName = 'bitliker-android'            //组织名称
 ext.desction = '封装基本工具集合，方便开发'            //备注
+ext.packType = 'aar'    //打包方式
+
 def getVersionCodeInt() {
-    def versionCodeInt = versionCode.replace(".","")
+    def versionCodeInt = versionCode.replace(".", "")
     return versionCodeInt.toInteger()
 }
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
@@ -31,7 +34,5 @@ android {
 dependencies {
     implementation rootProject.ext.expand.supportV7
 }
-
-
 
 //apply from:"https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
