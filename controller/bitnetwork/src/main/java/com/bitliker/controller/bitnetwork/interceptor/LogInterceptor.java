@@ -1,5 +1,7 @@
 package com.bitliker.controller.bitnetwork.interceptor;
 
+import android.text.TextUtils;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -28,10 +30,9 @@ public abstract class LogInterceptor implements Interceptor {
         MediaType mediaType = response.body().contentType();
         String message = response.body().string();
         Response resultResponse = response.newBuilder().body(ResponseBody.create(mediaType, message)).build();
-        if (showLogAble()){
+        if (showLogAble()) {
             showLog(request, message);
         }
-        result(message);
         return resultResponse;
     }
 
@@ -60,7 +61,9 @@ public abstract class LogInterceptor implements Interceptor {
             }
             log("header=" + mapToJson(header));
         }
-        log(message);
+        if (result(url, message)) {
+            log(message);
+        }
     }
 
     private String mapToJson(Map<String, Object> map) {
@@ -106,11 +109,28 @@ public abstract class LogInterceptor implements Interceptor {
         }
     }
 
-    public abstract boolean showLogAble();
+    public boolean showLogAble() {
+        return true;
+    }
 
-    public abstract void log(String logMsg);
+    /**
+     * 请求返回
+     *
+     * @param url     请求网址
+     * @param message 返回信息
+     * @return 是否转递到log（）方法中
+     */
+    public boolean result(String url, String message) {
+        return false;
+    }
 
-    public abstract void result(String message);
+    /**
+     * 打印信息
+     *
+     * @param logMsg 内容
+     */
+    public void log(String logMsg) {
+    }
 
 
 }

@@ -3,7 +3,6 @@ package com.bitliker.simple
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.alibaba.fastjson.JSON
 import com.bitliker.simple.common.BaseActivity
 import com.bitliker.simple.common.CommonSelectAdapter
 import com.bitliker.simple.common.model.CommonModel
@@ -45,6 +44,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getModel(): List<CommonModel> {
+
+
+
         var models = ArrayList<CommonModel>()
         var model: CommonModel? = null
         model = CommonModel()

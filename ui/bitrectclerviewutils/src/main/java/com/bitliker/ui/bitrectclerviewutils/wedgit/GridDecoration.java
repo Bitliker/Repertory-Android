@@ -17,11 +17,12 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
     private int dividerHeight;
     private Paint dividerPaint;
 
-    public GridDecoration() {
-        dividerHeight = 1;
+    public GridDecoration(int dividerHeight, int dividerColor) {
+        this.dividerHeight = dividerHeight;
         dividerPaint = new Paint();
-        dividerPaint.setColor(Color.GRAY);
+        dividerPaint.setColor(dividerColor);
     }
+
 
 
     private int getSpanCount(RecyclerView parent) {
@@ -31,8 +32,7 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
         if (layoutManager instanceof GridLayoutManager) {
             spanCount = ((GridLayoutManager) layoutManager).getSpanCount();
         } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-            spanCount = ((StaggeredGridLayoutManager) layoutManager)
-                    .getSpanCount();
+            spanCount = ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
         }
         return spanCount;
     }

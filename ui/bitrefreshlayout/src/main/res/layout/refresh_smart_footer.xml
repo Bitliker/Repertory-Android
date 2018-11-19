@@ -25,7 +25,7 @@
         android:layout_toLeftOf="@id/statusTV"
         android:src="@drawable/ic_refresh_pull_up" />
 
-    <com.gxut.ui.refreshlayout.refresh.smart.EatBeanLoadingView
+    <com.bitliker.ui.bitrefreshlayout.smart.EatBeanLoadingView
         android:id="@+id/srl_elv_pull_up"
         android:layout_width="match_parent"
         android:layout_height="50dp"

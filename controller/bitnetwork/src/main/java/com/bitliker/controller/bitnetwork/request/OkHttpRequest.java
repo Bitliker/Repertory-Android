@@ -12,6 +12,8 @@ import com.bitliker.controller.bitnetwork.response.Tags;
 import com.bitliker.controller.bitnetwork.ssl.DefaultSSLConfig;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +21,7 @@ import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -91,10 +94,26 @@ public class OkHttpRequest extends HttpRequest<Call> {
         enqueue(mBuilder, builder, callback);
     }
 
-    private void getRequest(HttpClient.Builder httpBuilder, final OnHttpCallback callback) throws Exception {
-        Request.Builder builder = new Request.Builder().url(mergeUrl(httpBuilder.getUrl()));
-        Headers2Builder(builder, httpBuilder);
-        enqueue(httpBuilder, builder, callback);
+    private void getRequest(HttpClient.Builder mBuilder, final OnHttpCallback callback) throws Exception {
+        StringBuilder urlBuilder = new StringBuilder(mergeUrl(mBuilder.getUrl()));
+        if (!mBuilder.getParams().isEmpty()) {
+            urlBuilder.append("?");
+            for (Map.Entry<String, Object> e : mBuilder.getParams().entrySet()) {
+                String value = e.getValue().toString();
+                try {
+                    value = URLEncoder.encode(value, "UTF-8");
+                } catch (UnsupportedEncodingException e1) {
+                }
+                urlBuilder.append(String.format("%s=%s&", e.getKey(), value));
+            }
+            String urlEnd = urlBuilder.toString();
+            if (urlEnd.endsWith("?") || urlEnd.endsWith("&")) {
+                urlBuilder.deleteCharAt(urlBuilder.length() - 1);
+            }
+        }
+        Request.Builder builder = new Request.Builder().url(urlBuilder.toString());
+        Headers2Builder(builder, mBuilder);
+        enqueue(mBuilder, builder, callback);
     }
 
     private void enqueue(HttpClient.Builder mBuilder, Request.Builder builder, final OnHttpCallback callback) {

@@ -1,6 +1,7 @@
 package com.bitliker.controller.bitnetwork.request;
 
 
+import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.bitliker.controller.bitnetwork.cache.CacheMode;
@@ -54,7 +55,7 @@ public abstract class HttpRequest<Call> implements RequestImp {
 
     //判断是否存在基本网址
     public String mergeUrl(String url) {
-        if (url != null && !url.startsWith("http") && baseUrl != null && !baseUrl.isEmpty()) {
+        if (url != null && !url.startsWith("http") && !TextUtils.isEmpty(baseUrl)) {
             return baseUrl + url;
         }
         return url;

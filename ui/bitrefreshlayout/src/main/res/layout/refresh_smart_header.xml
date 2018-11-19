@@ -26,7 +26,7 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_refresh_pull_down" />
 
-    <com.gxut.ui.refreshlayout.refresh.smart.GhostLoadingView
+    <com.bitliker.ui.bitrefreshlayout.smart.GhostLoadingView
         android:id="@+id/srl_glv_pull_down"
         android:layout_width="100dp"
         android:layout_height="50dp"

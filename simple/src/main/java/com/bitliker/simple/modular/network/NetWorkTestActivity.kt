@@ -15,20 +15,13 @@ class NetWorkTestActivity : BaseActivity() {
 
     override fun init() {
         postBtn?.setOnClickListener {
-            HttpClient.post("user/register")
-                    .addParam("sex", 1)
-                    .addParam("email", "gongpengming@162.com")
-                    .addParam("phone", "159976542201")
-                    .addParam("password", "159976542201")
-                    .addParam("userName", "159976542201")
-                    .addParam("nickName", "昵称")
-                    .addParam("remarks", "备注")
-                    .addParam("description", "描述")
-                    .addParam("birthday", "2017-11-11")
-                    .addParam("address", "没有地址")
-                    .addParam("portrait", "")
-                    .what(1)
-                    .addTag(1000, "这个是什么")
+            HttpClient.post("http://218.18.115.198:8888/ERP/mobile/oa/workdata.action")
+                    .addParam("date", "20181119")
+                    .addParam("emcode","U0736")
+                    .addParam("pageSize", 1000)
+                    .addParam("page", 1)
+                    .addParam("caller", "CardLog")
+                    .addParam("condition", "cl_emcode='" + "U0736"  + "'  and to_char(cl_time,'yyyy-MM-dd')='2018-11-19'")
                     .execute(object : OnHttpCallback {
                         override fun onSuccess(what: Int, message: String?, tags: Tags?) {
                             var logs = StringBuilder("onSuccess\n")
@@ -46,6 +39,8 @@ class NetWorkTestActivity : BaseActivity() {
                             questTv?.text=logs.toString()
                         }
                     })
+
+
         }
         getBtn?.setOnClickListener {
             HttpClient.get("user/register")

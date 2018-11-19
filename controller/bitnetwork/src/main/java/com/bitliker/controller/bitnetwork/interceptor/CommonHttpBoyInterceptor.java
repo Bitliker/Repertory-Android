@@ -6,12 +6,12 @@ import android.text.TextUtils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import okhttp3.FormBody;
 import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -57,8 +57,11 @@ public abstract class CommonHttpBoyInterceptor implements Interceptor {
             if (params != null && !params.isEmpty()) {
                 String method = request.method();
                 if (method.equals("GET")) {
-                    url = param2Url(url, params);
-                    requestBuilder.url(url);
+                    HttpUrl.Builder urlBuilder = request.url().newBuilder();
+                    for (Map.Entry<String, Object> entry : params.entrySet()) {
+                        urlBuilder.addQueryParameter(entry.getKey(),""+entry.getValue());
+                    }
+                    requestBuilder.url(urlBuilder.build());
                 } else if ("POST".equals(method)) {
                     String postBodyString = bodyToString(request.body());
                     FormBody.Builder formBodyBuilder = new FormBody.Builder();

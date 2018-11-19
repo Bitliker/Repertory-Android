@@ -15,11 +15,12 @@ public class LinearItemDecoration extends RecyclerView.ItemDecoration {
     private int dividerHeight;
     private Paint dividerPaint;
 
-    public LinearItemDecoration() {
-        dividerHeight = 1;
+    public LinearItemDecoration(int dividerHeight, int dividerColor) {
+        this.dividerHeight = dividerHeight;
         dividerPaint = new Paint();
-        dividerPaint.setColor(Color.GRAY);
+        dividerPaint.setColor(dividerColor);
     }
+
 
     //可以实现类似绘制背景的效果，内容在上面
     @Override
