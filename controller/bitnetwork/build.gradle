@@ -2,12 +2,12 @@ apply plugin: rootProject.ext.plugin.lib
 
 ext.versionCode = '3.11.0.5'                //版本号
 ext.versionName = 'v' + versionCode      //版本名字
-ext.repertoyAllName = 'com.bitliker.android.controller'    //最终引用形式，如compile 'com.leon.lfilepicker:1.0.0'，其中lfilepicker在后面配置
-ext.repertoyName = 'controller'                //仓库名称
-ext.projectName = 'BitNetWork'              //项目名称
-ext.organizationName = 'bitliker-android'            //组织名称
+ext.localRepoPath = 'D:/WorkSpace/Android/Libs-Android' //本地依赖库绝对地址
+ext.groupId = 'com.bitliker.android.controller' //组织地址
+ext.artifactId = 'BitNetWork'              //开源库Id 最后形式为 'com.bitliker.controller:BitNetWork:v1.0.0'
 ext.desction = '封装网络请求'            //备注
-ext.packType = 'aar'    //打包方式
+
+//apply from: 'https://gitee.com/Bitliker/BaseConfig/raw/master/github.gradle'
 
 def getVersionCodeInt() {
     def versionCodeInt = versionCode.replace(".", "")
@@ -35,4 +35,4 @@ android {
 dependencies {
     api rootProject.ext.expand.okhttp3
 }
-apply from: "https://gitee.com/Bitliker/BaseConfig/raw/master/bintray.gradle"
+

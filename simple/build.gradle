@@ -37,6 +37,7 @@ dependencies {
     implementation project(':bitdialog')
     implementation project(':bitrefreshlayout')
     implementation project(':bitutils')
-    implementation project(':bitnetwork')
+    implementation 'com.bitliker-android:BitNetWork:1.0.0'
+//    implementation project(':bitnetwork')
 }
 

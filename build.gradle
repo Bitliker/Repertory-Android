@@ -21,6 +21,7 @@ allprojects {
         maven { url rootProject.ext.repositories.gxutUi }
         maven { url rootProject.ext.repositories.gxutCore }
         maven { url rootProject.ext.repositories.BitlikerController   }
+        maven { url "https://raw.githubusercontent.com/Bitliker/Libs-Android/master" }
     }
 }
 
