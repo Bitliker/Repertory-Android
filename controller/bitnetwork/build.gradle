@@ -1,6 +1,6 @@
 apply plugin: rootProject.ext.plugin.lib
 
-ext.versionCode = '3.11.0.5'                //版本号
+ext.versionCode = '3.12.0.1'                //版本号
 ext.versionName = 'v' + versionCode      //版本名字
 ext.localRepoPath = 'D:/WorkSpace/Android/Libs-Android' //本地依赖库绝对地址
 ext.groupId = 'com.bitliker.android.controller' //组织地址

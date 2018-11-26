@@ -19,9 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -117,33 +115,42 @@ public class OkHttpRequest extends HttpRequest<Call> {
     }
 
     private void enqueue(HttpClient.Builder mBuilder, Request.Builder builder, final OnHttpCallback callback) {
-        Call call = okHttpClient.newCall(builder.build());
         final Tags tags = mBuilder.getTags();
         final int what = tags.getWhat();
-        call.enqueue(new Callback() {
+        final Call call = okHttpClient.newCall(builder.build());
+        ThreadPoolUtils.execute(new Runnable() {
             @Override
-            public void onFailure(Call call, final IOException e) {
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.onFailure(what, e.getMessage(), tags);
-                    }
-                });
-            }
+            public void run() {
+                try {
+                    final Response mResponse = call.execute();
+                    final String message = mResponse.body().string();
+                    if (mResponse == null || mResponse.code() != 200) {
+                        //错误
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    callback.onFailure(what, message, tags);
+                                } catch (Exception e) {
 
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            callback.onSuccess(what, response.body().string(), tags);
-                        } catch (IOException e) {
-                            callback.onFailure(what, e.getMessage(), tags);
-                            e.printStackTrace();
-                        }
+                                }
+                            }
+                        });
+                    } else {
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    callback.onSuccess(what, message, tags);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
-                });
+                } catch (IOException e) {
+
+                }
             }
         });
         addRequest(what, call);
@@ -205,7 +212,11 @@ public class OkHttpRequest extends HttpRequest<Call> {
             }
         } catch (Exception e) {
             if (onHttpCallback != null) {
-                onHttpCallback.onFailure(httpBuilder.getTags().getWhat(), e == null ? "" : e.getMessage(), httpBuilder.getTags());
+                try {
+                    onHttpCallback.onFailure(httpBuilder.getTags().getWhat(), e == null ? "" : e.getMessage(), httpBuilder.getTags());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         }
     }

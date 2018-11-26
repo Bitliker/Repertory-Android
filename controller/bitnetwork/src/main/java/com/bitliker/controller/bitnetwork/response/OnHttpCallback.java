@@ -6,7 +6,7 @@ package com.bitliker.controller.bitnetwork.response;
  */
 
 public interface OnHttpCallback{
-    void onSuccess(int what, String message, Tags tags);
+    void onSuccess(int what, String message, Tags tags) throws Exception;
 
-    void onFailure(int what, String message, Tags tags);
+    void onFailure(int what, String message, Tags tags) throws Exception;
 }
