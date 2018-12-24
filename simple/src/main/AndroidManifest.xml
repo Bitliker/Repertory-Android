@@ -26,6 +26,7 @@
         <activity android:name=".modular.dialog.DialogTestActivity"></activity>
         <activity android:name=".modular.recyclerview.RecyclerTestActivity"></activity>
    <activity android:name=".modular.network.NetWorkTestActivity"/>
+   <activity android:name=".modular.fragment.TestFragmentActivity"/>
     </application>
 
 </manifest>

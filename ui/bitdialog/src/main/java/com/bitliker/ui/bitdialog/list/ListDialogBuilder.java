@@ -12,10 +12,8 @@ import com.bitliker.ui.bitdialog.common.BitDialogConstants;
 import com.bitliker.ui.bitdialog.common.listener.OnMultiSelectListener;
 import com.bitliker.ui.bitdialog.common.listener.OnSelectListener;
 import com.bitliker.ui.bitdialog.common.paramer.ListParameter;
-import com.bitliker.ui.bitdialog.prompt.PromptDialogFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListDialogBuilder extends BaseDialogBuilder<ListDialogBuilder> {
 

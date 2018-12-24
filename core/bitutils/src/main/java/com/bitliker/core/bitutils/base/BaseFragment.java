@@ -128,7 +128,7 @@ public abstract class BaseFragment extends Fragment {
             mWaitDialog = new WaitDialog(ct) {
                 @Override
                 protected ProgressView getProgressView() {
-                    return getProgressView();
+                    return BaseFragment.this.getProgressView();
                 }
             };
         }

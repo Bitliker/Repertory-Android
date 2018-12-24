@@ -30,14 +30,13 @@ dependencies {
     testImplementation rootProject.ext.expand.junit
     androidTestImplementation rootProject.ext.expand.testRunner
     androidTestImplementation rootProject.ext.expand.espresso
-    implementation rootProject.ext.Bitliker.BitJson
     implementation rootProject.ext.expand.glide
     annotationProcessor rootProject.ext.expand.glideCompiler
-//    implementation project(':bitjson')
+    implementation project(':bitjson')
     implementation project(':bitdialog')
     implementation project(':bitrefreshlayout')
     implementation project(':bitutils')
-    implementation 'com.bitliker.android.controller:BitJson:v1.1.7.6'
-//    implementation project(':bitnetwork')
+//    implementation 'com.bitliker.android.controller:BitJson:v1.1.7.6'
+    implementation project(':bitnetwork')
 }
 
