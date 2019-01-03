@@ -11,6 +11,7 @@ import com.bitliker.controller.bitjson.JSONUtil
 import com.bitliker.core.bitutils.util.ToastUtils
 import com.bitliker.simple.R
 import com.bitliker.simple.common.BaseActivity
+import com.bitliker.simple.common.model.CommonModel
 import com.bitliker.ui.bitdialog.BitDialog
 import com.bitliker.ui.bitdialog.common.listener.InputWidgetListener
 import com.bitliker.ui.bitdialog.common.listener.OnMultiSelectListener
@@ -89,9 +90,9 @@ class DialogTestActivity : BaseActivity() {
                         .show()
             }
             R.id.listBtn -> {
-                var models = ArrayList<BitDialogModel>()
+                var models = ArrayList<CommonModel>()
                 for (i in 1..20) {
-                    models.add(BitDialogModel("这个是$i"))
+                    models.add(CommonModel().setName("这个是$i"))
                 }
 
                 BitDialog.createList(this)
@@ -114,7 +115,7 @@ class DialogTestActivity : BaseActivity() {
                                     Log.i("gong", "点击标题！！")
                                     false
                                 }))
-                        .show(models, OnMultiSelectListener { sure, selectModels ->
+                        .show(models as List<BitDialogModel>?, OnMultiSelectListener { sure, selectModels ->
                                 Toast.makeText(ct,"点击了这个=${JSONUtil.toJSONString(selectModels)}",Toast.LENGTH_SHORT).show()
                                 false
                         })

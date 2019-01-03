@@ -11,13 +11,14 @@ import com.bitliker.ui.bitdialog.common.listener.WidgetListener;
 import com.bitliker.ui.bitdialog.list.BitDialogModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListParameter implements Parcelable {
     private int textColorResId;
     private int textColor;
     private int textSize;
     private int textSizeUnit;
-    private ArrayList<BitDialogModel> models;
+    private List<BitDialogModel> models;
     private WidgetListener mWidgetListener;
 
     public ListParameter() {
@@ -28,7 +29,6 @@ public class ListParameter implements Parcelable {
         textColor = in.readInt();
         textSize = in.readInt();
         textSizeUnit = in.readInt();
-        models = in.createTypedArrayList(BitDialogModel.CREATOR);
     }
 
     public static final Creator<ListParameter> CREATOR = new Creator<ListParameter>() {
@@ -63,7 +63,7 @@ public class ListParameter implements Parcelable {
         return textSizeUnit;
     }
 
-    public ArrayList<BitDialogModel> getModels() {
+    public List<BitDialogModel> getModels() {
         return models;
     }
 
@@ -89,7 +89,7 @@ public class ListParameter implements Parcelable {
         return this;
     }
 
-    public void setModels(ArrayList<BitDialogModel> models) {
+    public void setModels(List<BitDialogModel> models) {
         this.models = models;
     }
 
@@ -118,6 +118,5 @@ public class ListParameter implements Parcelable {
         dest.writeInt(textColor);
         dest.writeInt(textSize);
         dest.writeInt(textSizeUnit);
-        dest.writeTypedList(models);
     }
 }

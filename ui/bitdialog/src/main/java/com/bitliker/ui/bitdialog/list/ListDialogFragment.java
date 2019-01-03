@@ -264,7 +264,7 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
             Object item = getItem(position);
             if (item != null && item instanceof BitDialogModel) {
                 BitDialogModel model = (BitDialogModel) item;
-                mViewHolder.contentTv.setText(model.getShowValues());
+                mViewHolder.contentTv.setText(model.getText());
                 mViewHolder.selectIv.setVisibility(model.isSelected() ? View.VISIBLE : View.GONE);
             } else {
                 mViewHolder.selectIv.setVisibility(View.GONE);

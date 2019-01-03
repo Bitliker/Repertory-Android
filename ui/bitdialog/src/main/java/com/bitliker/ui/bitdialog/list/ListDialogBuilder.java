@@ -14,6 +14,7 @@ import com.bitliker.ui.bitdialog.common.listener.OnSelectListener;
 import com.bitliker.ui.bitdialog.common.paramer.ListParameter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListDialogBuilder extends BaseDialogBuilder<ListDialogBuilder> {
 
@@ -54,7 +55,7 @@ public class ListDialogBuilder extends BaseDialogBuilder<ListDialogBuilder> {
     }
 
 
-    public ListDialogFragment show(ArrayList<BitDialogModel> models, OnMultiSelectListener onMultiSelectListener) {
+    public ListDialogFragment show(List<BitDialogModel> models, OnMultiSelectListener onMultiSelectListener) {
         this.showPositiveAble = true;
         mListParameter.setModels(models);
         mListParameter.setOnMultiSelectListener(onMultiSelectListener);
@@ -71,7 +72,7 @@ public class ListDialogBuilder extends BaseDialogBuilder<ListDialogBuilder> {
         return mListDialogFragment;
     }
 
-    public ListDialogFragment show(ArrayList<BitDialogModel> models, OnSelectListener onSelectListener) {
+    public ListDialogFragment show(List<BitDialogModel> models, OnSelectListener onSelectListener) {
         mListParameter.setModels(models);
         mListParameter.setOnSelectListener(onSelectListener);
         return show(mListParameter);

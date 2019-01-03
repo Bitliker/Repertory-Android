@@ -1,90 +1,9 @@
 package com.bitliker.ui.bitdialog.list;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class BitDialogModel implements Parcelable {
-    private int id;
-    private boolean selected;
-    private float sort;
-    private String showValues;
-    private String  data;
 
-    public BitDialogModel(String showValues) {
-        this.showValues = showValues;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
-    public float getSort() {
-        return sort;
-    }
-
-    public void setSort(float sort) {
-        this.sort = sort;
-    }
-
-    public String getShowValues() {
-        return showValues==null?"":showValues;
-    }
-
-    public void setShowValues(String showValues) {
-        this.showValues = showValues;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    protected BitDialogModel(Parcel in) {
-        id = in.readInt();
-        selected = in.readByte() != 0;
-        sort = in.readFloat();
-        showValues = in.readString();
-        data = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeByte((byte) (selected ? 1 : 0));
-        dest.writeFloat(sort);
-        dest.writeString(showValues);
-        dest.writeString(data);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<BitDialogModel> CREATOR = new Creator<BitDialogModel>() {
-        @Override
-        public BitDialogModel createFromParcel(Parcel in) {
-            return new BitDialogModel(in);
-        }
-
-        @Override
-        public BitDialogModel[] newArray(int size) {
-            return new BitDialogModel[size];
-        }
-    };
+public interface BitDialogModel {
+    CharSequence getText();
+    void setSelected(boolean isSelect);
+    boolean isSelected();
 }
