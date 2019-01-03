@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * 多选回调
  */
-public interface OnMultiSelectListener extends WidgetListener {
+public interface OnMultiSelectListener<T extends BitDialogModel> extends WidgetListener {
 
-    boolean select(boolean sure, List<BitDialogModel> selectModels);
+    boolean select(boolean sure, List<T> selectModels);
 
 }
