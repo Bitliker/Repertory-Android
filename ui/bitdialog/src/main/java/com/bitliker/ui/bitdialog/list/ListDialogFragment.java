@@ -134,14 +134,16 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.selectAllTv) {
-            boolean selectAll=false;
+        if (v.getId() ==R.id.cancelTv) {
+            dismiss();
+        } else if (v.getId() == R.id.selectAllTv) {
+            boolean selectAll = false;
             if (selectAllTv.getTag() == null) {
-                selectAll=true;
+                selectAll = true;
                 selectAllTv.setText(R.string.bit_dialog_noselect_all);
                 selectAllTv.setTag("noselect");
             } else {
-                selectAll=false;
+                selectAll = false;
                 selectAllTv.setText(R.string.bit_dialog_select_all);
                 selectAllTv.setTag(null);
             }
@@ -187,14 +189,16 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
                 }
             }
         }
+
         private void updateSelect(boolean selectAll) {
             if (models != null) {
-                for (BitDialogModel e:models){
+                for (BitDialogModel e : models) {
                     e.setSelected(selectAll);
                 }
                 notifyDataSetChanged();
             }
         }
+
         private void updateSelect(int selectIndex) {
             if (models != null) {
                 if (lastSelectIndex >= 0 && lastSelectIndex < models.size()) {
