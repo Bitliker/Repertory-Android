@@ -63,8 +63,8 @@ public class ListParameter implements Parcelable {
         return textSizeUnit;
     }
 
-    public List<BitDialogModel> getModels() {
-        return models;
+    public <T extends BitDialogModel> List<T> getModels() {
+        return (List<T>) models;
     }
 
 
@@ -89,8 +89,8 @@ public class ListParameter implements Parcelable {
         return this;
     }
 
-    public void setModels(List<BitDialogModel> models) {
-        this.models = models;
+    public <T extends BitDialogModel> void setModels(List<T> models) {
+        this.models = (List<BitDialogModel>) models;
     }
 
     public ListParameter setOnSelectListener(OnSelectListener onSelectListener) {

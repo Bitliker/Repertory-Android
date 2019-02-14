@@ -114,11 +114,7 @@ class DialogTestActivity : BaseActivity() {
                                 .setWidgetListener(PromptWidgetListener {
                                     Log.i("gong", "点击标题！！")
                                     false
-                                }))
-                        .show(models as List<BitDialogModel>?, OnMultiSelectListener { sure, selectModels ->
-                                Toast.makeText(ct,"点击了这个=${JSONUtil.toJSONString(selectModels)}",Toast.LENGTH_SHORT).show()
-                                false
-                        })
+                                }));
             }
         }
     }

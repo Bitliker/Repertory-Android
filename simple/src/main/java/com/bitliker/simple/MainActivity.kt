@@ -12,6 +12,7 @@ import com.bitliker.simple.modular.fragment.TestFragmentActivity
 import com.bitliker.simple.modular.network.NetWorkTestActivity
 import com.bitliker.simple.modular.recyclerview.RecyclerTestActivity
 import com.bitliker.simple.modular.scheduler.SchedulerTestActivity
+import com.bitliker.simple.modular.supadapter.SuperAdapterActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -69,6 +70,9 @@ class MainActivity : BaseActivity() {
         model = CommonModel()
         model.name = "fragment"
         model.cazz = TestFragmentActivity::class.java
+        model = CommonModel()
+        model.name = "superAdapter"
+        model.cazz = SuperAdapterActivity::class.java
         models.add(model)
         return models
 

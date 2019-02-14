@@ -55,7 +55,7 @@ public class ListDialogBuilder extends BaseDialogBuilder<ListDialogBuilder> {
     }
 
 
-    public ListDialogFragment show(List<BitDialogModel> models, OnMultiSelectListener onMultiSelectListener) {
+    public <T extends BitDialogModel> ListDialogFragment show(List<T> models, OnMultiSelectListener<T> onMultiSelectListener) {
         this.showPositiveAble = true;
         mListParameter.setModels(models);
         mListParameter.setOnMultiSelectListener(onMultiSelectListener);
@@ -72,7 +72,7 @@ public class ListDialogBuilder extends BaseDialogBuilder<ListDialogBuilder> {
         return mListDialogFragment;
     }
 
-    public ListDialogFragment show(List<BitDialogModel> models, OnSelectListener onSelectListener) {
+    public <T extends BitDialogModel> ListDialogFragment show(List<T> models, OnSelectListener<T> onSelectListener) {
         mListParameter.setModels(models);
         mListParameter.setOnSelectListener(onSelectListener);
         return show(mListParameter);

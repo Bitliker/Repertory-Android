@@ -27,6 +27,7 @@
         <activity android:name=".modular.recyclerview.RecyclerTestActivity"></activity>
    <activity android:name=".modular.network.NetWorkTestActivity"/>
    <activity android:name=".modular.fragment.TestFragmentActivity"/>
+        <activity android:name=".modular.supadapter.SuperAdapterActivity" />
     </application>
 
 </manifest>

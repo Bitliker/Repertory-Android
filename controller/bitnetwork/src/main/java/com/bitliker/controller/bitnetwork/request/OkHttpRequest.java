@@ -1,17 +1,23 @@
 package com.bitliker.controller.bitnetwork.request;
 
 
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.bitliker.controller.bitnetwork.HttpClient;
+import com.bitliker.controller.bitnetwork.response.OnDownloadListener;
 import com.bitliker.controller.bitnetwork.response.OnHttpCallback;
 import com.bitliker.controller.bitnetwork.response.Tags;
 import com.bitliker.controller.bitnetwork.ssl.DefaultSSLConfig;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
@@ -19,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -202,7 +209,6 @@ public class OkHttpRequest extends HttpRequest<Call> {
     public void request(HttpClient.Builder httpBuilder, OnHttpCallback onHttpCallback) {
         try {
             switch (httpBuilder.getMode()) {
-                case HttpClient.POST:
                 case HttpClient.POST_JSON:
                     postRequest(httpBuilder, onHttpCallback);
                     break;
@@ -219,6 +225,74 @@ public class OkHttpRequest extends HttpRequest<Call> {
                 }
             }
         }
+    }
+
+    @Override
+    public void download(final HttpClient.DownloadBuilder httpBuilder,final OnDownloadListener listener) {
+        Request request = new Request.Builder().url("https://static.uuzcc.cn/appmade/11181030086995852084.wmv").build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i("gong","onFailure"+e.getMessage());
+                Log.i("gong","isMain:"+(Looper.myLooper()==Looper.getMainLooper()));
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                InputStream is = null;
+                byte[] buf = new byte[2048];
+                int len = 0;
+                FileOutputStream fos = null;
+                // 储存下载文件的目录
+                String savePath = getFilePath(httpBuilder.getFilePath());
+                try {
+                    is = response.body().byteStream();
+                    long total = response.body().contentLength();
+                    File file = new File(savePath, httpBuilder.getFileName());
+                    fos = new FileOutputStream(file);
+                    long sum = 0;
+                    while ((len = is.read(buf)) != -1) {
+                        fos.write(buf, 0, len);
+                        sum += len;
+                        int progress = (int) (sum * 1.0f / total * 100);
+                        // 下载中
+                        listener.onDownloading(progress);
+                    }
+                    fos.flush();
+                    // 下载完成
+                    listener.onDownloadSuccess(file);
+                } catch (Exception e) {
+                    listener.onDownloadFailed(new Throwable(e.getMessage()));
+                } finally {
+                    try {
+                        if (is != null)
+                            is.close();
+                    } catch (IOException e) {
+                    }
+                    try {
+                        if (fos != null)
+                            fos.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+        });
+    }
+
+
+    /**
+     * @param saveDir
+     * @return
+     * @throws IOException 判断下载目录是否存在
+     */
+    private String getFilePath(String saveDir) throws IOException {
+        // 下载位置
+        File downloadFile = new File(Environment.getExternalStorageDirectory(), saveDir);
+        if (!downloadFile.mkdirs()) {
+            downloadFile.createNewFile();
+        }
+        String savePath = downloadFile.getAbsolutePath();
+        return savePath;
     }
 
 

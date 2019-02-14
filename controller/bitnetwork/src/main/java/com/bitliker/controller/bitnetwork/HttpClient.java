@@ -2,6 +2,7 @@ package com.bitliker.controller.bitnetwork;
 
 
 import com.bitliker.controller.bitnetwork.request.HttpRequest;
+import com.bitliker.controller.bitnetwork.response.OnDownloadListener;
 import com.bitliker.controller.bitnetwork.response.OnHttpCallback;
 import com.bitliker.controller.bitnetwork.response.Tags;
 
@@ -42,8 +43,8 @@ public class HttpClient {
         return new Builder(json ? POST_JSON : POST, url);
     }
 
-    public Builder downLoad(String url) {
-        return new Builder(DOWNLOAD, url);
+    public DownloadBuilder downLoad(String url) {
+        return new DownloadBuilder(url);
     }
 
     public Builder upload(String url) {
@@ -64,6 +65,69 @@ public class HttpClient {
         HttpClient.mHttpRequest = mHttpRequest;
     }
 
+
+    public static class DownloadBuilder {
+        private String url;//请求的url
+        private Map<String, String> headers;//头文件
+        private Tags tags;//记录单个请求的转递值
+        private String filePath;
+        private String fileName;
+
+        public String getFilePath() {
+            return filePath;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public DownloadBuilder(String url) {
+            this.url = url;
+        }
+
+        public Map<String, String> getHeaders() {
+            return headers == null ? headers = new HashMap<>() : headers;
+        }
+
+        public Tags getTags() {
+            return tags == null ? tags = new Tags() : tags;
+        }
+
+        public DownloadBuilder headers(Map<String, String> header) {
+            this.headers = header;
+            return this;
+        }
+
+        public DownloadBuilder addHeader(String key, String value) {
+            this.getHeaders().put(key, value);
+            return this;
+        }
+
+        public DownloadBuilder addTag(int key, Object values) {
+            this.getTags().put(key, values);
+            return this;
+        }
+
+        public DownloadBuilder setFilePath(String filePath) {
+            this.filePath = filePath;
+            return this;
+        }
+
+        public DownloadBuilder setFileName(String fileName) {
+            this.fileName = fileName;
+            return this;
+        }
+
+        public void execute(OnDownloadListener onDownloadListener) {
+            if (mHttpRequest != null) {
+                mHttpRequest.download(this, onDownloadListener);
+            }
+        }
+    }
 
     //创建单个请求
     public static class Builder {
@@ -145,7 +209,6 @@ public class HttpClient {
             }
         }
     }
-
 
 
 }

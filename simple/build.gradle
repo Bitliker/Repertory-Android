@@ -38,5 +38,7 @@ dependencies {
     implementation project(':bitutils')
 //    implementation 'com.bitliker.android.controller:BitJson:v1.1.7.6'
     implementation project(':bitnetwork')
+    implementation project(':superadapter')
+    implementation project(':bitrectclerviewutils')
 }
 

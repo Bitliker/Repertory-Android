@@ -1,13 +1,15 @@
 apply plugin: rootProject.ext.plugin.lib
 
-ext.versionCode = '3.12.0.2'                //版本号
+ext.versionCode = '0.0.1'                //版本号
 ext.versionName = 'v' + versionCode      //版本名字
 ext.localRepoPath = 'D:/WorkSpace/Android/Libs-Android' //本地依赖库绝对地址
-ext.groupId = 'com.bitliker.android.controller' //组织地址
-ext.artifactId = 'BitNetWork'              //开源库Id 最后形式为 'com.bitliker.controller:BitNetWork:v1.0.0'
-ext.desction = '封装网络请求'            //备注
+ext.groupId = 'com.bitliker.android.ui' //组织地址
+ext.artifactId = 'SuperAdapter'              //开源库Id 最后形式为 'com.bitliker.controller:BitNetWork:v1.0.0'
+ext.desction = '对于列表适配器的封装'            //备注
 
 apply from: 'https://gitee.com/Bitliker/BaseConfig/raw/master/github.gradle'
+
+
 
 def getVersionCodeInt() {
     def versionCodeInt = versionCode.replace(".", "")
@@ -33,6 +35,7 @@ android {
 }
 
 dependencies {
-    api rootProject.ext.expand.okhttp3
+    implementation rootProject.ext.expand.supportV7
+    implementation rootProject.ext.expand.recyclerview
 }
 

@@ -1,7 +1,6 @@
 package com.bitliker.ui.bitrectclerviewutils.wedgit;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,17 +12,16 @@ import android.view.View;
  * Created by Bitlike on 2018/1/12.
  */
 
-@Deprecated
-public class GridDecoration extends RecyclerView.ItemDecoration {
+public class RecyclerLineDecoration extends RecyclerView.ItemDecoration {
     private int dividerHeight;
     private Paint dividerPaint;
 
-    public GridDecoration(int dividerHeight, int dividerColor) {
+
+    public RecyclerLineDecoration(int dividerHeight, int dividerColor) {
         this.dividerHeight = dividerHeight;
         dividerPaint = new Paint();
         dividerPaint.setColor(dividerColor);
     }
-
 
 
     private int getSpanCount(RecyclerView parent) {
@@ -53,7 +51,6 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
     }
 
 
-
     //可以实现类似绘制背景的效果，内容在上面
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
@@ -67,7 +64,7 @@ public class GridDecoration extends RecyclerView.ItemDecoration {
             float bottom = view.getBottom() + dividerHeight;
             c.drawRect(left, top, right, bottom, dividerPaint);
         }
-        drawVertical(c,parent);
+        drawVertical(c, parent);
 
     }
 
