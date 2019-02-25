@@ -1,5 +1,6 @@
 package com.bitliker.simple.modular.supadapter
 
+import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.TextView
@@ -9,10 +10,12 @@ import com.bitliker.simple.common.model.CommonModel
 import com.bitliker.simple.common.utils.RecyclerDecoration
 import com.bitliker.ui.bitdialog.BitDialog
 import com.bitliker.ui.bitdialog.common.listener.OnSelectListener
+import com.bitliker.ui.bitrectclerviewutils.baseadapter.MultiAdapter
 import com.bitliker.ui.bitrectclerviewutils.listener.OnRecyclerItemClickListener
-import com.gxut.ui.superadapter.SingleAdapter
-import com.gxut.ui.superadapter.SuperViewHolder
 import kotlinx.android.synthetic.main.activity_super_adapter.*
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class SuperAdapterActivity : BaseActivity() {
 
@@ -23,16 +26,21 @@ class SuperAdapterActivity : BaseActivity() {
     }
 
     override fun init() {
-        mRecyclerView.layoutManager = GridLayoutManager(ct, 3) as RecyclerView.LayoutManager?
+        mRecyclerView.layoutManager = GridLayoutManager(ct, 3)
         mRecyclerView.addItemDecoration(RecyclerDecoration(ct))
-
-        var mAdapter = object : SingleAdapter<CommonModel>(ct, R.layout.item_common_list) {
-            override fun bindData(holder: SuperViewHolder?, item: CommonModel?) {
+        var layoutReIds = ArrayList<Int>()
+        layoutReIds.add(R.layout.item_common_list)
+        layoutReIds.add(R.layout.item_test1)
+        layoutReIds.add(R.layout.item_test2)
+        layoutReIds.add(R.layout.item_test3)
+        var mAdapter = object : MultiAdapter<CommonModel>(ct) {
+            override fun getLayoutId(item: CommonModel, position: Int): Int {
+                return layoutReIds[Random().nextInt(4)]
+            }
+            override fun bindData(context: Context?, holder: com.bitliker.ui.bitrectclerviewutils.baseadapter.SuperViewHolder?, item: CommonModel?, layoutId: Int, position: Int) {
                 var nameTv = holder!!.getView<TextView>(R.id.name)
                 nameTv!!.text = item!!.name
-
             }
-
         }
         mAdapter.setData(testData())
         mRecyclerView.adapter = mAdapter

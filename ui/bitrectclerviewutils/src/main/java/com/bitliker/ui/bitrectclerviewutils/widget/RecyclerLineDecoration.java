@@ -1,4 +1,4 @@
-package com.bitliker.ui.bitrectclerviewutils.wedgit;
+package com.bitliker.ui.bitrectclerviewutils.widget;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

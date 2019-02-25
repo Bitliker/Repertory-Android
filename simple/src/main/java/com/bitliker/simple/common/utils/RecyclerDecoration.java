@@ -3,7 +3,7 @@ package com.bitliker.simple.common.utils;
 import android.content.Context;
 
 import com.bitliker.simple.R;
-import com.bitliker.ui.bitrectclerviewutils.wedgit.RecyclerLineDecoration;
+import com.bitliker.ui.bitrectclerviewutils.widget.RecyclerLineDecoration;
 
 public class RecyclerDecoration extends RecyclerLineDecoration {
 

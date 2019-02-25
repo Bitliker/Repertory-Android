@@ -1,4 +1,4 @@
-package com.bitliker.ui.bitrectclerviewutils.wedgit;
+package com.bitliker.ui.bitrectclerviewutils.widget;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

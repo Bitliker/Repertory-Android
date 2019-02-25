@@ -1,0 +1,1 @@
+### 将不再维护，请使用[bitrectclerviewutils](https://github.com/Bitliker/Repertory-Android/tree/master/ui/bitrectclerviewutils)库

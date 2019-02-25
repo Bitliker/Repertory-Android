@@ -12,19 +12,13 @@ import java.util.Map;
  * 单一数据类型
  */
 public abstract class MultiAdapter<T> extends BaseRecyclerAdapter<T> {
-
-    private Map<Integer, Integer> layoutMap = new HashMap<>();
-
-    public MultiAdapter(Context context, int[] layoutIds) {
+    public MultiAdapter(Context context) {
         super(context);
-        for (int i = 0; i < layoutIds.length; i++) {
-            layoutMap.put(i, layoutIds[i]);
-        }
     }
 
     @Override
     public SuperViewHolder onCreateViewHolder(ViewGroup parent, int position) {
-        int layoutId = getLayoutId(position);
+        int layoutId = getLayoutId(getData(position),position);
         return new SuperViewHolder(layoutId, getInflater().inflate(layoutId, parent, false));
     }
 
@@ -40,7 +34,7 @@ public abstract class MultiAdapter<T> extends BaseRecyclerAdapter<T> {
 
 
     //根据ViewType获取LayoutId
-    public abstract int getLayoutId(int position);
+    public abstract int getLayoutId(T item,int position);
 
 
     /*绑定数据源*/

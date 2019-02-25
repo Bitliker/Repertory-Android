@@ -17,8 +17,12 @@ import java.util.Map;
 
 
 public class JSONUtil {
-    private static final String TAG = "JSONUtil";
+    private static final String TAG = "JSON";
+    private static boolean isLog = false;
 
+    public static void setIsLog(boolean isLog) {
+        JSONUtil.isLog = isLog;
+    }
 
     public static JSONObject parseObject(String message) {
         try {
@@ -71,12 +75,15 @@ public class JSONUtil {
     public static boolean getBoolean(JSONObject object, String... keys) {
         if (keys != null && keys.length > 0) try {
             for (String key : keys) {
-                if (object.containsKey(key) && object.get(key) != null && object.get(key) instanceof Boolean) {
-                    return object.getBoolean(key);
+                if (object.containsKey(key)) {
+                    Object o = object.get(key);
+                    if (o != null) {
+                        return (boolean) o;
+                    }
                 }
             }
         } catch (Exception e) {
-            if (e != null) {
+            if (e != null && isLog) {
                 Log.i(TAG, e.getMessage());
             }
         }
