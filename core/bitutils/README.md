@@ -17,13 +17,15 @@
 
 ## 引入
 - 在project的build.gradle中allprojects添加maven
-    allprojects {
+```
+allprojects {
         repositories {
             maven { url "https://raw.githubusercontent.com/BitlikerLibs/Libs-Android/master" }
             ...
         }
     }
-
+```
 - 在modular的build.gradle添加引用
-    implementation 'com.bitliker.android.core:bitutils:v1.1.0'
-    
+```
+implementation 'com.bitliker.android.core:bitutils:v1.1.0'
+```    
