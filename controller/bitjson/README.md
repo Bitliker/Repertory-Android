@@ -10,9 +10,9 @@
     <dependency>
       <groupId>com.bitliker.android.controller</groupId>
       <artifactId>bitjson</artifactId>
-      <version>v1.1.7.1</version>
+      <version>v1.1.7.6</version>
       <type>pom</type>
     </dependency>
 #### Gradle
-    implementation 'com.bitliker.android.controller:bitjson:v1.1.7.1'
+    implementation 'com.bitliker.android.controller:bitjson:v1.1.7.6'
     
