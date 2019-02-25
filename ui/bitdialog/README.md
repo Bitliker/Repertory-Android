@@ -2,18 +2,21 @@
 
 ## 引入
 - 在project的build.gradle中allprojects添加maven
-    allprojects {
+```
+allprojects {
         repositories {
             maven { url "https://raw.githubusercontent.com/BitlikerLibs/Libs-Android/master" }
             ...
         }
     }
-
+```
 - 在modular的build.gradle添加引用
-    implementation 'com.bitliker.android.ui:bitdialog:v1.0.5'
-    
+```
+implementation 'com.bitliker.android.ui:bitdialog:v1.0.5'
+```    
 ## 使用
 #### 提示框
+```
       BitDialog.createPrompt(null)
                     .showNegativeAble(true)//是否显示确认按钮
                     .showPositiveAble(true)//是否需要显示取消按钮
@@ -46,9 +49,10 @@
                         }
                     })///确定按钮
                     .show();
-                    
+```                   
 
 #### 输入框
+```
      BitDialog.createInput(null)
                     .showNegativeAble(true)//是否显示确认按钮
                     .showPositiveAble(true)//是否需要显示取消按钮
@@ -74,8 +78,10 @@
                         }
                     })///确定按钮
                     .show();
-                    
+```
+
 #### 选择框
+```
       BitDialog.createList(null)
                     .showNegativeAble(true)//是否显示确认按钮
                     .showPositiveAble(true)//是否需要显示取消按钮
@@ -88,3 +94,5 @@
                     .setPositive("确定")///确定按钮
                     .show(ArrayList< BitDialogModel > models, OnMultiSelectListener onMultiSelectListener);
             //show 有两个重载函数   分别对应 单选和多选 
+            
+ ```
