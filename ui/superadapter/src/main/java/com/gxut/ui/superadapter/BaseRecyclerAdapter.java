@@ -54,14 +54,14 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<SuperV
     }
 
 
-    public void addData(T list, boolean notify) {
-        addData(items.size(), list, notify);
+    public void addData(T data, boolean notify) {
+        addData(items.size(), data, notify);
     }
 
-    public void addData(int position, T list, boolean notify) {
-        this.items.add(position, list);
+    public void addData(int position, T data, boolean notify) {
+        this.items.add(position+1, data);
         if (notify) {
-            notifyItemInserted(position);
+            notifyItemInserted(position+1);
         }
     }
 
@@ -72,9 +72,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<SuperV
 
 
     public void addData(int startPosition, List<T> list, boolean notify) {
-        this.items.addAll(startPosition, list);
+        this.items.addAll(startPosition+1, list);
         if (notify) {
-            notifyItemRangeInserted(startPosition, list.size());
+            notifyItemRangeInserted(startPosition+1, list.size());
         }
     }
 

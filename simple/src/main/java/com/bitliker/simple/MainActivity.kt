@@ -3,6 +3,8 @@ package com.bitliker.simple
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.bitliker.core.bitutils.util.LogUtil
+import com.bitliker.core.bitutils.util.ToastUtils
 import com.bitliker.simple.common.BaseActivity
 import com.bitliker.simple.common.CommonSelectAdapter
 import com.bitliker.simple.common.model.CommonModel
@@ -23,7 +25,14 @@ class MainActivity : BaseActivity() {
     }
 
     override fun init() {
+        initConfig()
         initView()
+    }
+
+    private fun initConfig() {
+        ToastUtils.init(ct)
+        LogUtil.init(true)
+
     }
 
 
@@ -46,7 +55,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getModel(): List<CommonModel> {
-
 
 
         var models = ArrayList<CommonModel>()

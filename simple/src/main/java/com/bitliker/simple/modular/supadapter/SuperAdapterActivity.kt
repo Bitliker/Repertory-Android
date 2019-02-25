@@ -52,7 +52,7 @@ class SuperAdapterActivity : BaseActivity() {
                                     mAdapter.removeData(position)
                                 }
                                 "添加" -> {
-                                    mAdapter.addData( testData(), true)
+                                    mAdapter.addData(position, CommonModel().setName("新增的那个"), true)
                                 }
                                 "修改" -> {
                                     mAdapter.updateData(position, CommonModel().setName("修改过的"), true)

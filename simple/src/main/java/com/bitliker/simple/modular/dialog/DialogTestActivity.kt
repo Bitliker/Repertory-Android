@@ -42,7 +42,7 @@ class DialogTestActivity : BaseActivity() {
                                 })
                                 .setTextSize(10)
                                 .setTextColorResId(R.color.testColor))
-                        .setPositive("确定"){
+                        .setPositive("确定") {
                             ToastUtils.showShort("点击了确定！！")
                             true
                         }
@@ -54,8 +54,6 @@ class DialogTestActivity : BaseActivity() {
                                     false
                                 }))
                         .show()
-
-
             }
             R.id.inputBtn -> {
                 BitDialog.createInput(this)
@@ -72,7 +70,8 @@ class DialogTestActivity : BaseActivity() {
                                 .setTextSize(TypedValue.COMPLEX_UNIT_PX, 20)
                                 .setWidgetListener(InputWidgetListener { _: View, ed: EditText ->
                                     Toast.makeText(ct, ed.text.toString(), Toast.LENGTH_SHORT).show()
-                                    false
+                                    ed.setText("修改后")
+                                    true
                                 }))
                         .setNegative(WidgetParameter("取消的")
                                 .setTextSize(TypedValue.COMPLEX_UNIT_PX, 30)
@@ -94,7 +93,6 @@ class DialogTestActivity : BaseActivity() {
                 for (i in 1..20) {
                     models.add(CommonModel().setName("这个是$i"))
                 }
-
                 BitDialog.createList(this)
                         .setPositive(WidgetParameter("确定的")
                                 .setTextSize(TypedValue.COMPLEX_UNIT_PX, 20)
@@ -102,6 +100,8 @@ class DialogTestActivity : BaseActivity() {
                                     Toast.makeText(ct, ed.text.toString(), Toast.LENGTH_SHORT).show()
                                     false
                                 }))
+                        .setCancelable(false)
+                        .setCanceledOnTouchOutside(false)
                         .setNegative(WidgetParameter("取消的")
                                 .setTextSize(TypedValue.COMPLEX_UNIT_PX, 30)
                                 .setWidgetListener(InputWidgetListener { _: View, ed: EditText ->
@@ -114,7 +114,14 @@ class DialogTestActivity : BaseActivity() {
                                 .setWidgetListener(PromptWidgetListener {
                                     Log.i("gong", "点击标题！！")
                                     false
-                                }));
+                                }))
+                        .show(models, OnSelectListener<CommonModel> { sure, selectModel ->
+                            if (sure) {
+                                ToastUtils.showShort(selectModel.name)
+                            }
+
+                            true
+                        })
             }
         }
     }

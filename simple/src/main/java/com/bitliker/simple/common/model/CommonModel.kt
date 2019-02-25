@@ -25,7 +25,6 @@ class CommonModel : BitDialogModel {
     }
     var id: Int? = null
     var name: String? = null
-    var showName: String? = null
     var sub: String? = null
     var cazz: Class<out BaseActivity>? = null
     var mb: Bundle? = null

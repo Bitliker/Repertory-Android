@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +43,12 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
 
     @Override
     public void initView(View view) {
-        selectAllTv = (AppCompatTextView) view.findViewById(R.id.selectAllTv);
-        sureTv = (AppCompatTextView) view.findViewById(R.id.sureTv);
-        AppCompatTextView titleTv = (AppCompatTextView) view.findViewById(R.id.titleTv);
-        ListView mListView = (ListView) view.findViewById(R.id.mListView);
-        AppCompatTextView cancelTv = (AppCompatTextView) view.findViewById(R.id.cancelTv);
+        Log.i("gong", "initView");
+        selectAllTv = view.findViewById(R.id.selectAllTv);
+        sureTv = view.findViewById(R.id.sureTv);
+        AppCompatTextView titleTv = view.findViewById(R.id.titleTv);
+        ListView mListView = view.findViewById(R.id.mListView);
+        AppCompatTextView cancelTv = view.findViewById(R.id.cancelTv);
         selectAllTv.setOnClickListener(this);
         Bundle args = getArguments();
         if (args != null) {
@@ -69,8 +71,6 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
                 }
                 mWidgetListener = mListParameter.getOnWidgetClickListener();
                 doModels(mListView, isMulti, mListParameter);
-            } else {
-                //TODO 错误
             }
         }
     }
@@ -93,14 +93,7 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
                 if (params != null) {
                     DisplayMetrics dm = new DisplayMetrics();
                     getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-                    Configuration mConfiguration = this.getResources().getConfiguration(); //获取设置的配置信息
-                    int ori = mConfiguration.orientation; //获取屏幕方向
-                    if (ori == mConfiguration.ORIENTATION_LANDSCAPE) {
-                        //横屏
-                        params.height = (dm.widthPixels * 2) / 3;
-                    } else {
-                        params.height = dm.heightPixels / 2;
-                    }
+                    params.height = dm.heightPixels / 2;
                     mListView.setLayoutParams(params);
                 }
             }
@@ -134,7 +127,7 @@ public class ListDialogFragment extends BaseDialogFragment implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v.getId() ==R.id.cancelTv) {
+        if (v.getId() == R.id.cancelTv) {
             dismiss();
         } else if (v.getId() == R.id.selectAllTv) {
             boolean selectAll = false;
