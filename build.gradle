@@ -1,11 +1,11 @@
-apply from: "https://gitee.com/Bitliker/BaseConfig/raw/master/version.gradle"
+apply from: "version.gradle"
 buildscript {
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        apply from: "https://gitee.com/Bitliker/BaseConfig/raw/master/version.gradle"
+        apply from: "version.gradle"
         classpath rootProject.ext.classpaths.gradle
         classpath rootProject.ext.classpaths.kotlinPlugin
         classpath rootProject.ext.classpaths.dcendents
@@ -18,10 +18,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url rootProject.ext.repositories.gxutUi }
-        maven { url rootProject.ext.repositories.gxutCore }
-        maven { url rootProject.ext.repositories.BitlikerController   }
-        maven { url "https://raw.githubusercontent.com/BitlikerLibs/Libs-Android/master" }
+        maven { url rootProject.ext.repositories.BitGithubRepos }
     }
 }
 

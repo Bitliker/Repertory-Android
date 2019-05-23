@@ -1,0 +1,132 @@
+ext {
+
+    //统一版本号
+    version = [
+            //官方
+            kotlinVersion     : '1.3.21',
+            gradleVersion     : '3.2.0',
+            supportVersion    : '28.0.0',
+            constraintVersion : '1.1.3',
+            //数据平台
+            bmobVersion       : '3.7.3-rc1',
+            leancloudVersion  : 'v4.7.0',
+            //网络请求
+            noHttpVersion     : '1.1.11',
+            kalleVersion      : '0.1.4',
+            okhttp3Version    : '3.12.0',
+            retrofitVersion   : '2.4.0',
+            //数据解析
+            fastjsonVersion   : '1.2.49',
+            fastAndroidVersion: '1.1.70.android',
+            gsonVersion       : '2.8.2',
+            //数据处理
+            rxjava2Version    : '2.2.0',
+            rxandroidVersion  : '2.1.0',
+            greendaoVersion   : '3.2.2',
+            glideVersion      : '4.8.0',
+            //控件
+            pickerVersion     : '4.1.6',
+            //个人库
+            jsonVersion       : 'v1.1.7.6',
+            utilsVersion      : 'v1.1.0',
+            rvUtilsVersion    : 'v1.1.0',
+            refreshVersion    : 'v1.1.0',
+            networkVersion    : 'v3.12.0.1',
+            adapterVersion    : 'v0.0.2',
+            dialigVersion     : 'v1.0.5',
+    ]
+
+
+    // 项目根目录的build.gradle中，allprojects-》repositories 下添加:
+    //maven { url rootProject.ext.repositories.gxutUi }
+    repositories = [
+            leancloud     : "http://mvn.leancloud.cn/nexus/content/repositories/public",//leancloud 仓库
+            BitGithubRepos: "https://raw.githubusercontent.com/BitlikerLibs/Libs-Android/master",//个人github封装库
+            bmob          : "https://raw.github.com/bmob/bmob-android-sdk/master"//bmob仓库
+    ]
+// 项目根目录的build.gradle中，buildscript-》dependencies 下添加:
+    classpaths = [
+            kotlinPlugin: 'org.jetbrains.kotlin:kotlin-gradle-plugin:' + version.kotlinVersion,
+            gradle      : 'com.android.tools.build:gradle:' + version.gradleVersion,
+            dcendents   : 'com.github.dcendents:android-maven-gradle-plugin:1.5',
+            bintray     : 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    ]
+
+
+    //在module的build.gradle中通过apply plugin引入
+    plugin = [
+            kotlin   : 'kotlin-android',//module引入kotlin支持 和 kotlinExt一同使用
+            kotlinExt: 'kotlin-android-extensions',//同上
+            app      : 'com.android.application',//android工程
+            lib      : 'com.android.library',//android依赖库
+            maven    : 'com.github.dcendents.android-maven',//添加maven支持
+            bintray  : 'com.jfrog.bintray'//添加bintray支持
+    ]
+
+
+    //添加开源库依赖，在module的build.gradle的dependencies中通过implementation rootProject.ext.expand.xxx引用
+    expand = [
+            supportV7      : 'com.android.support:appcompat-v7:' + version.supportVersion,//implementation
+            recyclerview   : 'com.android.support:recyclerview-v7:' + version.supportVersion,//implementation
+            kotlinJDK7     : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + version.kotlinVersion,//implementation
+            design         : 'com.android.support:design:' + version.supportVersion,//implementation
+            constraint     : 'com.android.support.constraint:constraint-layout:' + version.constraintVersion,
+
+            junit          : 'junit:junit:4.12',//testImplementation
+            testRunner     : 'com.android.support.test:runner:1.0.2',//androidTestImplementation
+            espresso       : 'com.android.support.test.espresso:espresso-core:3.0.2',//androidTestImplementation
+
+            bmob           : 'cn.bmob.android:bmob-sdk:' + version.bmobVersion,//implementation,需要先在根目录build.gradle下添加bmob
+            leancloud      : 'cn.leancloud.android:avoscloud-sdk:' + version.leancloudVersion,
+
+            //网络请求
+            //nohttp 混淆：-keepclassmembers class ** {private javax.net.ssl.SSLSocketFactory delegate;}*
+            okhttp         : 'com.yanzhenjie.nohttp:okhttp:' + version.noHttpVersion,
+            nohttp         : 'com.yanzhenjie.nohttp:nohttp:' + version.noHttpVersion,
+
+            //kalle 混淆 -dontwarn com.yanzhenjie.kalle
+            kalle          : 'com.yanzhenjie:kalle:' + version.kalleVersion,
+            okalle         : 'com.yanzhenjie:okalle:' + version.kalleVersion,
+
+            okhttp3        : 'com.squareup.okhttp3:okhttp:' + version.okhttp3Version,
+            retrofit       : 'com.squareup.retrofit2:retrofit:' + version.retrofitVersion,
+
+            fastjson       : 'com.alibaba:fastjson:' + version.fastjsonVersion,
+            fastjsonAndroid: 'com.alibaba:fastjson:' + version.fastAndroidVersion,
+            gson           : 'com.google.code.gson:gson:' + version.gsonVersion,
+
+            rxjava2        : 'io.reactivex.rxjava2:rxjava:' + version.rxjava2Version,
+            rxandroid      : 'io.reactivex.rxjava2:rxandroid:' + version.rxandroidVersion,
+
+            greendao       : 'org.greenrobot:greendao:' + version.greendaoVersion,
+
+            //图片框架
+            glide          : 'com.github.bumptech.glide:glide:' + version.glideVersion,//implementation
+            glideCompiler  : 'com.github.bumptech.glide:compiler:' + version.glideVersion,//annotationProcessor
+
+            //ios时间选择器
+            pickerView     : 'com.contrarywind:Android-PickerView:' + version.pickerVersion
+    ]
+    //添加开源库依赖，在module的build.gradle的android中通过implementation rootProject.ext.expand.xxx添加
+    android = [
+            compileSdkVersion: 28,                      //当前使用sdk版本号
+            buildToolsVersion: '28.1.1',                //使用的buildTools 版本号
+            minSdkVersion    : 16,                      //可以安装最低手机版本号
+            targetSdkVersion : 28,                      //可以安装的最高手机版本号
+            javaVersion8     : JavaVersion.VERSION_1_8,//java版本
+            javaVersion9     : JavaVersion.VERSION_1_9,//java版本
+            javaVersion10    : JavaVersion.VERSION_1_10,//java版本
+    ]
+
+
+    BitGitHub = [
+            BitJson         : 'com.bitliker.android.controller:BitJson:' + version.BitJsonVersion,
+            BitUtils        : 'com.bitliker.android.core:BitUtils:' + version.utilsVersion,
+            BitRecyclerUtils: 'com.bitliker.android.ui:BitRectclerViewUtils:' + version.rvUtilsVersion,
+            BitRefreshLayout: 'com.bitliker.android.ui:BitRefreshLayout:' + version.refreshVersion,
+            BitNetwork      : 'com.bitliker.android.controller:BitNetWork:' + version.networkVersion,
+            SuperAdapter    : 'com.bitliker.android.ui:SuperAdapter:' + version.adapterVersion,
+            BitDialog       : 'com.bitliker.android.ui:BitDialig:' + version.dialigVersion
+    ]
+
+}

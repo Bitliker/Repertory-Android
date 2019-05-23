@@ -247,11 +247,13 @@ public abstract class SupportToolsBarActivity extends SwipeBackActivity {
 
     public void setCommonTitleTv(@IdRes int resId) {
         commonTitleTv = findViewById(resId);
-        commonTitleTv.setText(getTitle());
+        setCommonTitleTv(commonTitleTv);
     }
 
     public void setCommonTitleTv(TextView mTitleTv) {
-        commonTitleTv = mTitleTv;
+        if (commonTitleTv == null || commonTitleTv != mTitleTv) {
+            commonTitleTv = mTitleTv;
+        }
         commonTitleTv.setText(getTitle());
     }
 
