@@ -32,7 +32,7 @@ dependencies {
     androidTestImplementation rootProject.ext.expand.espresso
     implementation rootProject.ext.expand.glide
     annotationProcessor rootProject.ext.expand.glideCompiler
-    implementation project(':bitjson')
+//    implementation project(':bitjson')
     implementation project(':bitdialog')
     implementation project(':bitrefreshlayout')
     implementation project(':bitutils')

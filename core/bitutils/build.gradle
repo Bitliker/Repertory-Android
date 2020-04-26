@@ -7,7 +7,7 @@ ext.groupId = 'com.bitliker.android.core' //组织地址
 ext.artifactId = 'BitUtils'              //开源库Id 最后形式为 'com.bitliker.controller:BitNetWork:v1.0.0'
 ext.desction = '封装基本工具集合，方便开发'            //备注
 
-apply from: 'https://gitee.com/Bitliker/BaseConfig/raw/master/github.gradle'
+//apply from: 'https://gitee.com/Bitliker/BaseConfig/raw/master/github.gradle'
 
 
 def getVersionCodeInt() {

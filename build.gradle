@@ -18,7 +18,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url rootProject.ext.repositories.BitGithubRepos }
+        maven { url 'https://raw.githubusercontent.com/BitlikerLibs/Libs-Android/master' }
     }
 }
 

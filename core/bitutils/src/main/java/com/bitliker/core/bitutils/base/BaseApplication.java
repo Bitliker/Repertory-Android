@@ -3,6 +3,8 @@ package com.bitliker.core.bitutils.base;
 import android.app.Application;
 import android.content.pm.ApplicationInfo;
 
+import java.util.Properties;
+
 /**
  * Created by Bitlike on 2017/12/5.
  */
